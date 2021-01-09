@@ -15,8 +15,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val CITY: String = "Busan, KR"
-    val API: String = "6a4c860014844a38fe342be3fab38741"
+    val CITYset: String = "Busan, KR"
+    val APIset: String = "6a4c860014844a38fe342be3fab38741"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         override fun doInBackground(vararg p0: String?): String? {
             var response: String?
             try {
-                response = URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API")
+                response = URL("https://api.openweathermap.org/data/2.5/weather?q=$CITYset&units=metric&appid=$APIset")
                         .readText(Charsets.UTF_8)
             }
             catch (e: Exception)
