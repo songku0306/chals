@@ -15,7 +15,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val CITY: String = "Busan,KR"
+    val CITY: String = "Busan, KR"
     val API: String = "6a4c860014844a38fe342be3fab38741"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,9 @@ class MainActivity : AppCompatActivity() {
             try {
                 response = URL("https://api.openweathermap.org/data/2.5/weather?q=$CITY&units=metric&appid=$API")
                         .readText(Charsets.UTF_8)
-            } catch (e: Exception) {
+            }
+            catch (e: Exception)
+            {
                 response = null
             }
             return response
