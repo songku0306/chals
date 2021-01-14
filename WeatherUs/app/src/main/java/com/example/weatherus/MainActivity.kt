@@ -16,7 +16,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     val CITYset: String = "Busan, KR"
-    val APIset: String = "6a4c860014844a38fe342be3fab38741"
+    val APIset: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
