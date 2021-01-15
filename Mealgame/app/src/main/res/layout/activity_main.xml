@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#39571C"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
 
@@ -45,8 +45,8 @@
                 android:id="@+id/snum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:gravity="center"
+                android:padding="8dp"
                 android:text="01"
                 android:textColor="@color/white" />
 
@@ -73,10 +73,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0"
                 android:padding="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/white" />
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,7 +85,6 @@
         android:id="@+id/midlay"
         android:layout_width="255dp"
         android:layout_height="271dp"
-        android:padding="30dp"
         android:layout_above="@+id/botlay"
         android:layout_below="@+id/toplay"
         android:layout_alignParentStart="true"
@@ -93,7 +92,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:padding="30dp">
 
         <ImageView
             android:id="@+id/gif_ciz"
@@ -121,12 +121,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/botlay"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#B2B2B2"
-        android:minHeight="100dp"
-        android:padding="20dp"
-        >
+        android:minHeight="100dp">
 
 
         <ImageButton
@@ -136,19 +134,21 @@
             android:layout_weight="1"
             android:foreground="@drawable/btn_worm"
             app:backgroundTint="#b2b2b2"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/pobtn"
             app:layout_constraintEnd_toStartOf="@+id/pobtn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/pobtn" />
 
         <ImageButton
             android:id="@+id/pobtn"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             android:layout_weight="1"
             android:foreground="@drawable/btn_power"
             app:backgroundTint="#b2b2b2"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -160,10 +160,20 @@
             android:layout_weight="1"
             android:foreground="@drawable/btn_lvup"
             app:backgroundTint="#b2b2b2"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/pobtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pobtn"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/pobtn" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
