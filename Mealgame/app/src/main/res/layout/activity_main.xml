@@ -54,7 +54,7 @@
 
         <LinearLayout
             android:id="@+id/toprig"
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +72,9 @@
                 android:id="@+id/lbl_gold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:padding="10dp"
-                android:text="0"
+                android:text="0000"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </LinearLayout>

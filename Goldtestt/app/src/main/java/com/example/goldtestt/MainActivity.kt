@@ -2,6 +2,8 @@ package com.example.goldtestt
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -14,6 +16,7 @@ import kotlin.concurrent.timer
 class MainActivity : AppCompatActivity() {
 
     private lateinit var lbl_gold: TextView
+    private lateinit var btn_worm: ImageButton
 
     private var gold = 0
     private var timerTask: Timer? = null
@@ -24,26 +27,34 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         lbl_gold = findViewById(R.id.lbl_gold)
+        btn_worm = findViewById(R.id.button)
 
         startTimer()
 
+
+
+//        btn_worm.isEnabled > 10
+
+
+        btn_worm.setOnClickListener {
+            gold -= 10
+
+        }
+
         val adView = AdView(this)
         val adSize = AdSize(300, 50)
-
         adView.adSize = AdSize.BANNER
-
         adView.adUnitId = "ca-app-pub-3940256099942544~3347511713"
-// TODO: Add adView to your view hierarchy.
-
         MobileAds.initialize(this) {}
-
         AdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         AdView.loadAd(adRequest)
+
+
     }
 
     private fun startTimer() {
-        timerTask = timer(period=1000) {
+        timerTask = timer(period=500) {
             gold++
             runOnUiThread {
                 lbl_gold?.text = "$gold"
