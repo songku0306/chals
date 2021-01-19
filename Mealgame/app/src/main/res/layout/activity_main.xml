@@ -169,16 +169,6 @@
         android:padding="30dp">
 
 
-        <ImageView
-            android:id="@+id/gif_ciz"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/gif_ciz"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gif_worm"
             android:layout_width="40dp"
@@ -187,6 +177,17 @@
             android:src="@drawable/gif_worm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/gif_ciz"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="300dp"
+            android:src="@drawable/gif_ciz"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -198,6 +199,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/egg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/egg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
