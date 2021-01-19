@@ -36,8 +36,8 @@
 
             <ImageView
                 android:id="@+id/stage"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_width="80dp"
+                android:layout_height="25dp"
                 android:layout_gravity="top"
                 android:src="@drawable/stage" />
 
@@ -46,9 +46,82 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:text="01"
                 android:textColor="@color/white" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/round"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/rd1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/rd2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rd2"
+                    app:srcCompat="@drawable/ic_baseline_radio_button_checked_24" />
+
+                <ImageView
+                    android:id="@+id/rd2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/rd3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rd1"
+                    app:layout_constraintTop_toTopOf="@+id/rd3"
+                    app:srcCompat="@drawable/ic_baseline_radio_button_unchecked_24" />
+
+                <ImageView
+                    android:id="@+id/rd3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/rd4"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rd2"
+                    app:layout_constraintTop_toTopOf="@+id/rd4"
+                    app:srcCompat="@drawable/ic_baseline_radio_button_unchecked_24" />
+
+                <ImageView
+                    android:id="@+id/rd4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/rd_boss"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rd3"
+                    app:layout_constraintTop_toTopOf="@+id/rd_boss"
+                    app:srcCompat="@drawable/ic_baseline_radio_button_unchecked_24" />
+
+
+                <ImageView
+                    android:id="@+id/rd_boss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rd4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_radio_button_unchecked_24" />
+
+                <TextView
+                    android:id="@+id/tv_boss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="BOSS"
+                    android:textColor="#D34338"
+                    android:textSize="7sp"
+                    app:layout_constraintEnd_toEndOf="@+id/rd_boss"
+                    app:layout_constraintStart_toStartOf="@+id/rd_boss"
+                    app:layout_constraintTop_toBottomOf="@+id/rd_boss" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
 
@@ -95,16 +168,16 @@
         android:layout_marginBottom="0dp"
         android:padding="30dp">
 
+
         <ImageView
             android:id="@+id/gif_ciz"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:src="@drawable/gif_ciz"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/gif_ciz" />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gif_worm"
@@ -115,6 +188,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/rd_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
