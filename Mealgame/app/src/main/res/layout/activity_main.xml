@@ -185,6 +185,7 @@
             android:layout_height="150dp"
             android:layout_marginBottom="300dp"
             android:src="@drawable/gif_ciz"
+            android:background="?android:selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
