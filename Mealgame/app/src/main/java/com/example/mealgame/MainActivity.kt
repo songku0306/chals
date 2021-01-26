@@ -24,10 +24,14 @@ import pl.droidsonroids.gif.GifImageView
 import java.lang.Exception
 import java.util.*
 import kotlin.concurrent.timer
+//import androidx.databinding.DataBindingUtil
+
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var ViewModel : Gold
+
 //    private lateinit var binding: ActivityMainBinding
 
 
@@ -45,11 +49,29 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var AdView : AdView
 
+
+
+    data class Feed(val imageId: Int, val stage: Int, val round: Int, val healthPoint: Int)
+
+        val feeds = mutableListOf(
+                Feed(R.drawable.beans, 1, 1, 100),
+                Feed(R.drawable.gif_ciz, 1, 2, 500),
+                Feed(R.drawable.tuna, 1, 3, 2500)
+        )
+
+        private var currentFeed = feeds[0]
+
+
+
+
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         btn_menu = findViewById(R.id.menubtn)
         btn_worm = findViewById(R.id.wobtn)
@@ -68,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         gif_worm.isVisible = false
-
+        ob_ciz.setImageResource(currentFeed.imageId)
         //-------------------라운드 시작---------------------------------------------------
         rd_start.setOnClickListener {
             rd_start.isGone = true
@@ -84,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
             gif_worm.animate().apply {
                 duration = 2500
-                translationX(-100f)
+                translationX(100f)
                 start()
             }
 
@@ -105,7 +127,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        ViewModel.onGold()
 
         val adView = AdView(this)
 
@@ -122,13 +143,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        ViewModel.offTimer()
-//    }
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
-//    private fun offTimer() {
-//
-//    }
 
 }
