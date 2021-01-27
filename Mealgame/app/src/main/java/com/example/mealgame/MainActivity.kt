@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
@@ -30,7 +31,7 @@ import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var ViewModel : Gold
+    private lateinit var ViewModel: Gold
 
 //    private lateinit var binding: ActivityMainBinding
 
@@ -47,22 +48,18 @@ class MainActivity : AppCompatActivity() {
     //        var btn_status: ImageView = findViewById(R.id.statusbtn)
 //        var btn_power: ImageButton = findViewById(R.id.pobtn)
 
-    lateinit var AdView : AdView
-
+    lateinit var AdView: AdView
 
 
     data class Feed(val imageId: Int, val stage: Int, val round: Int, val healthPoint: Int)
 
-        val feeds = mutableListOf(
-                Feed(R.drawable.beans, 1, 1, 100),
-                Feed(R.drawable.gif_ciz, 1, 2, 500),
-                Feed(R.drawable.tuna, 1, 3, 2500)
-        )
+    val feeds = mutableListOf(
+            Feed(R.drawable.beans, 1, 1, 100),
+            Feed(R.drawable.gif_ciz, 1, 2, 500),
+            Feed(R.drawable.tuna, 1, 3, 2500)
+    )
 
-        private var currentFeed = feeds[0]
-
-
-
+    private var currentFeed = feeds[0]
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -82,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         egg = findViewById(R.id.egg)
         lbl_gold = findViewById(R.id.lbl_gold)
 
-        // =================메뉴칸======================================================
+// =================메뉴칸======================================================
         btn_menu.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -94,24 +91,23 @@ class MainActivity : AppCompatActivity() {
         //-------------------라운드 시작---------------------------------------------------
         rd_start.setOnClickListener {
             rd_start.isGone = true
-            
+
             ob_ciz.animate().apply {
                 duration = 1500
                 translationY(300f)
                 start()
             }
 
-
             gif_worm.isVisible = true
 
             gif_worm.animate().apply {
                 duration = 2500
-                translationX(100f)
+                translationX(-100f)
                 start()
             }
 
         }
-//        ===================버튼클릭================================================
+//===================버튼클릭================================================
         btn_worm.setOnClickListener {
             ViewModel._gold.value = (ViewModel._gold.value)?.minus(10)
         }
@@ -142,10 +138,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     override fun onDestroy() {
         super.onDestroy()
     }
-
-
 }
+
+
+
