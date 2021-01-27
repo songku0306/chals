@@ -138,14 +138,17 @@ class MainActivity : AppCompatActivity() {
 
         btn_level.setOnClickListener {
             egg.animate().apply {
-                duration = 1000
-                scaleXBy(0.07f)
-                scaleYBy(0.07f)
-                start()
+                duration = 50
+                scaleX(1.05f)
+                scaleY(1.05f)
+            }.withEndAction {
+                egg.animate().apply {
+                    duration = 50
+                    scaleX(0.95f)
+                    scaleY(0.95f)
+                }.start()
             }
-
         }
-
 
         val adView = AdView(this)
 
