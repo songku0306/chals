@@ -1,12 +1,13 @@
 package com.example.goldtestt
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import com.example.goldtestt.Mealworm.power
 import java.util.*
 import kotlin.concurrent.timer
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var livegold : TextView
     private lateinit var btn_worm : ImageButton
     private lateinit var feed : ImageView
+    private lateinit var start_rd : ImageButton
 
     private lateinit var egpush1 : ImageButton
     private lateinit var egg1 : ImageView
@@ -34,50 +36,44 @@ class MainActivity : AppCompatActivity() {
         btn_worm = findViewById(R.id.button)
         livegold = findViewById(R.id.lbl_gold)
         feed = findViewById(R.id.feed)
-
+        start_rd = findViewById(R.id.start_rd)
         egg1 = findViewById(R.id.egg1)
         egpush1 = findViewById(R.id.egpush1)
 
 
-
         startTimer()
-
+//        eatring()
 
         btn_worm.setOnClickListener {
             gold -= 10
-
+            Mealworm
         }
 
-        gif_worm.animate().apply {
-                duration = 1500
+        gif_worm.isVisible = false
+        feed.isVisible = false
+        start_rd.setOnClickListener {
+            start_rd.isGone = true
+            gif_worm.isVisible = true
+            feed.isVisible = true
+            gif_worm.animate().apply {
+                duration = 2500
                 translationX(-200f)
                 start()
             }
+
         }
 
 
+    }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//    private fun eatring() {
+//        lbl_gold = lbl_gold?.minus(power)
+//    }
 
     private fun startTimer(): TextView {
-        timerTask = timer(period=500) {
+        timerTask = timer(period = 500) {
             gold++
             runOnUiThread {
                 lbl_gold?.text = "$gold"
@@ -88,13 +84,36 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onDestroy() {
-        super.onDestroy()
-        stopTimer()
+            super.onDestroy()
+            stopTimer()
+        }
+
+        private fun stopTimer() {
+            timerTask?.cancel()
+        }
     }
 
-    private fun stopTimer() {
-        timerTask?.cancel()
-    }
+
+object Mealworm {
+
+    var power = 0
+init {
+
+    var power = 1
+
 }
 
+
+    val mealworms = mutableListOf(
+            "wormlv1",
+            "wormlv2",
+            "wormlv3"
+    )
+
+
+//    fun wormPower() {
+//        if Mealworm = MainActivity.feed {
+//        power++
+//    }
+    }
 

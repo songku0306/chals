@@ -93,13 +93,36 @@ class MainActivity : AppCompatActivity() {
             rd_start.isGone = true
 
             ob_ciz.animate().apply {
-                duration = 1500
+                duration = 1000
                 translationY(300f)
-                start()
+            }.withEndAction {
+                ob_ciz.animate().apply {
+                    duration = 100
+                    scaleX(1.05f)
+                }.withEndAction {
+                ob_ciz.animate().apply {
+                    startDelay = 100
+                    duration = 100
+                    scaleX(0.95f)
+                }.withEndAction {
+                ob_ciz.animate().apply {
+                    duration = 100
+                    scaleX(1.05f)
+                    scaleY(1.05f)
+                }.withEndAction {
+                ob_ciz.animate().apply {
+                    startDelay = 100
+                    duration = 100
+                    scaleX(0.95f)
+                    scaleY(0.95f)
+                }.start()
+            }
+        }
+                }
             }
 
-            gif_worm.isVisible = true
 
+            gif_worm.isVisible = true
             gif_worm.animate().apply {
                 duration = 2500
                 translationX(-100f)
