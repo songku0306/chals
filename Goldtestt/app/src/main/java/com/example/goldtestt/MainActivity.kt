@@ -21,9 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var feed : ImageView
     private lateinit var start_rd : ImageButton
 
-    private lateinit var egpush1 : ImageButton
-    private lateinit var egg1 : ImageView
-
 
     private var gold = 0
     private var timerTask: Timer? = null
@@ -37,12 +34,10 @@ class MainActivity : AppCompatActivity() {
         livegold = findViewById(R.id.lbl_gold)
         feed = findViewById(R.id.feed)
         start_rd = findViewById(R.id.start_rd)
-        egg1 = findViewById(R.id.egg1)
-        egpush1 = findViewById(R.id.egpush1)
+
 
 
         startTimer()
-//        eatring()
 
         btn_worm.setOnClickListener {
             gold -= 10

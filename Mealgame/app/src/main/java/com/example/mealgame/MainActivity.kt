@@ -130,6 +130,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
 //===================버튼클릭================================================
         btn_worm.setOnClickListener {
             ViewModel._gold.value = (ViewModel._gold.value)?.minus(10)
