@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/fbimage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/fbphase"
@@ -32,15 +32,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/bookshelf" />
 
-            <TextView
+            <EditText
                 android:id="@+id/fbphase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="The Impressed phase"
+                android:hint="The Impressed phase..."
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/fbimage" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -53,12 +53,12 @@
             app:layout_constraintTop_toBottomOf="@+id/top">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/blist"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
             <ImageButton
-                android:id="@+id/addb"
+                android:id="@+id/badd"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/add"

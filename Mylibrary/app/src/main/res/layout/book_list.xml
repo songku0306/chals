@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:padding="10dp"
     >
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/book_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -19,27 +20,27 @@
         app:srcCompat="@drawable/book1" />
 
     <TextView
-        android:id="@+id/bsubject"
+        android:id="@+id/book_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="Book Name"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/book_img"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/booksummary"
+        android:id="@+id/book_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="TextView"
+        android:text="Summary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/bsubject" />
+        app:layout_constraintStart_toEndOf="@+id/book_img"
+        app:layout_constraintTop_toBottomOf="@+id/book_subject" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/book_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date-day"
