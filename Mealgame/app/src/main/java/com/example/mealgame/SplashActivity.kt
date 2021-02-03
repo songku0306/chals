@@ -22,8 +22,14 @@ class SplashActivity : AppCompatActivity() {
         gif_worm.animate().apply {
             duration = 2000
             rotation(720f)
-            start()
-        }
+        }.withEndAction {
+            gif_worm.animate().apply {
+                duration = 3000
+                scaleX(0f)
+                scaleY(0f)
+            }.start()
+    }
+
 
 
         Handler(Looper.getMainLooper()).postDelayed({

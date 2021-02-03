@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rd_start: Button
     private lateinit var ob_ciz: ImageView
     private lateinit var gif_worm: GifImageView
+    private lateinit var gif_worm1: GifImageView
     private lateinit var btn_level: ImageButton
     private lateinit var egg: ImageView
     private lateinit var lbl_gold: TextView
@@ -74,6 +75,8 @@ class MainActivity : AppCompatActivity() {
         rd_start = findViewById(R.id.rd_start)
         ob_ciz = findViewById(R.id.gif_ciz)
         gif_worm = findViewById(R.id.gif_worm)
+        gif_worm1 = findViewById(R.id.gif_worm)
+
         btn_level = findViewById(R.id.lvbtn)
         egg = findViewById(R.id.egg)
         lbl_gold = findViewById(R.id.lbl_gold)
@@ -86,50 +89,57 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        gif_worm.isVisible = false
         ob_ciz.setImageResource(currentFeed.imageId)
-        //-------------------라운드 시작---------------------------------------------------
-        rd_start.setOnClickListener {
-            rd_start.isGone = true
 
-            ob_ciz.animate().apply {
-                duration = 1000
-                translationY(300f)
-            }.withEndAction {
-                ob_ciz.animate().apply {
-                    duration = 100
-                    scaleX(1.05f)
-                }.withEndAction {
-                    ob_ciz.animate().apply {
-                        startDelay = 100
-                        duration = 100
-                        scaleX(0.95f)
-                    }.withEndAction {
-                        ob_ciz.animate().apply {
-                            duration = 100
-                            scaleX(1.05f)
-                            scaleY(1.05f)
-                        }.withEndAction {
-                            ob_ciz.animate().apply {
-                                startDelay = 100
-                                duration = 100
-                                scaleX(0.95f)
-                                scaleY(0.95f)
-                            }.start()
-                        }
-                    }
-                }
-            }
+//        //-------------------라운드 시작---------------------------------------------------
+//        rd_start.setOnClickListener {
+//            rd_start.isGone = true
+//
+//            ob_ciz.animate().apply {
+//                duration = 1000
+//                translationY(300f)
+//            }.withEndAction {
+//                ob_ciz.animate().apply {
+//                    duration = 100
+//                    scaleX(1.05f)
+//                }.withEndAction {
+//                    ob_ciz.animate().apply {
+//                        startDelay = 100
+//                        duration = 100
+//                        scaleX(0.95f)
+//                    }.withEndAction {
+//                        ob_ciz.animate().apply {
+//                            duration = 100
+//                            scaleX(1.05f)
+//                            scaleY(1.05f)
+//                        }.withEndAction {
+//                            ob_ciz.animate().apply {
+//                                startDelay = 100
+//                                duration = 100
+//                                scaleX(0.95f)
+//                                scaleY(0.95f)
+//                            }.start()
+//                        }
+//                    }
+//                }
+//            }
+//
+//
+//            gif_worm.isVisible = true
+//            gif_worm.animate().apply {
+//                duration = 2500
+//                translationX(-300f)
+//                start()
+//            }
 
+//            gif_worm1.animate().apply {
+//                duration = 2500
+//                translationX(-100f)
+//                translationY(-10f)
+//                start()
+//            }
 
-            gif_worm.isVisible = true
-            gif_worm.animate().apply {
-                duration = 2500
-                translationX(-100f)
-                start()
-            }
-
-        }
+//        }
 
 //===================버튼클릭================================================
         btn_worm.setOnClickListener {
