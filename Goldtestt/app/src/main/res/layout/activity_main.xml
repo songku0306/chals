@@ -34,6 +34,62 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/gif_worm2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gif_worm" />
+
+        <ImageView
+            android:id="@+id/gif_worm3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gif_worm2" />
+
+        <ImageView
+            android:id="@+id/gif_worm4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gif_worm3" />
+
+        <ImageView
+            android:id="@+id/gif_worm5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gif_worm4" />
+
+        <ImageView
+            android:id="@+id/gif_worm6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gif_worm5" />
+
+        <ImageView
+            android:id="@+id/gif_worm7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintBottom_toTopOf="@+id/gif_worm"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/gif_worm8"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintBottom_toTopOf="@+id/gif_worm7"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <ImageButton
             android:id="@+id/start_rd"
             android:layout_width="50dp"

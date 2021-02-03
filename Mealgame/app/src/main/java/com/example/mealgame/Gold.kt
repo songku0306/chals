@@ -9,7 +9,7 @@ import com.example.mealgame.Mealworm.power
 import pl.droidsonroids.gif.GifImageView
 
 
-class Gold: ViewModel() {
+open class Gold: ViewModel() {
 
     private lateinit var lbl_gold: TextView
 
@@ -18,10 +18,8 @@ class Gold: ViewModel() {
     val gold: LiveData<Int>
         get() = _gold
 
-
-
-//    fun onGold() {
-//        _gold.value = (_gold.value)?.plus(power)
+//        fun onGold() {
+//            ViewModel._gold.value = (ViewModel._gold.value)?.plus(Mealworm.power)
 //        }
 
 
@@ -49,6 +47,7 @@ object Mealworm {
 
 
     fun wormPower() {
-        power++
+
+        }
+
     }
-}

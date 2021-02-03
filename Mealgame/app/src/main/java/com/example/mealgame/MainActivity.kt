@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
@@ -35,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
 //    private lateinit var binding: ActivityMainBinding
 
-
     private lateinit var btn_worm: ImageButton
     private lateinit var btn_menu: ImageButton
     private lateinit var rd_start: Button
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 //        var btn_power: ImageButton = findViewById(R.id.pobtn)
 
     lateinit var AdView: AdView
-
 
     data class Feed(val imageId: Int, val stage: Int, val round: Int, val healthPoint: Int)
 
@@ -79,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         egg = findViewById(R.id.egg)
         lbl_gold = findViewById(R.id.lbl_gold)
 
+
 // =================메뉴칸======================================================
         btn_menu.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
@@ -100,24 +100,24 @@ class MainActivity : AppCompatActivity() {
                     duration = 100
                     scaleX(1.05f)
                 }.withEndAction {
-                ob_ciz.animate().apply {
-                    startDelay = 100
-                    duration = 100
-                    scaleX(0.95f)
-                }.withEndAction {
-                ob_ciz.animate().apply {
-                    duration = 100
-                    scaleX(1.05f)
-                    scaleY(1.05f)
-                }.withEndAction {
-                ob_ciz.animate().apply {
-                    startDelay = 100
-                    duration = 100
-                    scaleX(0.95f)
-                    scaleY(0.95f)
-                }.start()
-            }
-        }
+                    ob_ciz.animate().apply {
+                        startDelay = 100
+                        duration = 100
+                        scaleX(0.95f)
+                    }.withEndAction {
+                        ob_ciz.animate().apply {
+                            duration = 100
+                            scaleX(1.05f)
+                            scaleY(1.05f)
+                        }.withEndAction {
+                            ob_ciz.animate().apply {
+                                startDelay = 100
+                                duration = 100
+                                scaleX(0.95f)
+                                scaleY(0.95f)
+                            }.start()
+                        }
+                    }
                 }
             }
 
@@ -133,11 +133,13 @@ class MainActivity : AppCompatActivity() {
 
 //===================버튼클릭================================================
         btn_worm.setOnClickListener {
+
             ViewModel._gold.value = (ViewModel._gold.value)?.minus(10)
         }
 
-
         btn_level.setOnClickListener {
+
+
             egg.animate().apply {
                 duration = 50
                 scaleX(1.05f)
@@ -149,8 +151,13 @@ class MainActivity : AppCompatActivity() {
                     scaleY(0.95f)
                 }.start()
             }
+
         }
 
+
+
+
+//===================광 고 ================================================
         val adView = AdView(this)
 
         adView.adSize = AdSize.BANNER
@@ -164,11 +171,7 @@ class MainActivity : AppCompatActivity() {
         AdView.loadAd(adRequest)
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
     }
 }
-
-
-
