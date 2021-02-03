@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mylibrary</string>
+    <string name="thephase">Subject...⏎
+\n\n The Imppressed Phase...
+    </string>
+
 </resources>

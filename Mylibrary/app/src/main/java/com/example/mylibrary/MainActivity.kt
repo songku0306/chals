@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
     lateinit var fbphase : EditText
     lateinit var blist : RecyclerView
 
+    var imm : InputMethodManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
             fbphase.setText("")
             insertList(list)
         }
+        imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
 
         blist.layoutManager = LinearLayoutManager(this)
 
@@ -44,7 +49,11 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
 
 
 
-
+    fun hideKeyboard(v: View) {
+        if(v != null) {
+            imm?.hideSoftInputFromWindow(v.windowToken, 0)
+        }
+    }
 
     fun insertList(list: BookEntity) {
         val insertTask = object : AsyncTask<Unit, Unit, Unit>() {
