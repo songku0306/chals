@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class WormEntity(
         @PrimaryKey(autoGenerate = true)
         var id : Long?,
-        var power : Long)
+        var list : String = "")
 
 
 

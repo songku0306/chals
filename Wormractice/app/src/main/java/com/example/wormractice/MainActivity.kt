@@ -5,25 +5,25 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-private lateinit var feed : ImageView
-private lateinit var gif_worm: ImageView
-private lateinit var start_rd : ImageButton
-private lateinit var btn_power : ImageButton
-
+import com.example.wormractice.WormDatabase.Companion.getInstance
 
 
 @SuppressLint("StaticFieldLeak")
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnDeleteListener {
 
     lateinit var db: WormDatabase
     var WormList: List<WormEntity> = listOf<WormEntity>()
+
+    lateinit var feed : ImageView
+    lateinit var btn_power : ImageButton
+    lateinit var wlist : RecyclerView
+    lateinit var asdf : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,39 +31,27 @@ class MainActivity : AppCompatActivity() {
 
         feed = findViewById(R.id.feed)
         btn_power = findViewById(R.id.btn_power)
-        start_rd = findViewById(R.id.start_rd)
-        gif_worm = findViewById(R.id.gif_worm)
+        wlist = findViewById(R.id.recyclerView)
+        asdf = findViewById(R.id.tvtv)
 
         db = WormDatabase.getInstance(this)!!
 
         feed.setImageResource(currentFeed.imageId)
 
-        gif_worm.isVisible = false
-        feed.isVisible = false
-
-        start_rd.setOnClickListener {
-            start_rd.isGone = true
-            gif_worm.isVisible = true
-            feed.isVisible = true
-
-            gif_worm.animate().apply {
-                duration = 2500
-                translationX(-200f)
-                start()
-            }
-        }
 
         btn_power.setOnClickListener {
-            var worm = WormEntity(null, 1)
-            insertList(worm)
+            var list = WormEntity(null, asdf.text.toString())
+            insertList(list)
         }
+
+        wlist.layoutManager = LinearLayoutManager(this)
 
     }
 
-    fun insertList(worm: WormEntity) {
+    fun insertList(list: WormEntity) {
         val insertTask = (object : AsyncTask<Unit, Unit, Unit>() {
-            override fun doInBackground(vararg params: Unit?) {
-                db.wormDAO().insert(worm)
+                    override fun doInBackground(vararg params: Unit?) {
+                        db.wormDAO().insert(list)
             }
             override fun onPostExecute(result: Unit?) {
                 super.onPostExecute(result)
@@ -79,15 +67,15 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onPostExecute(result: Unit?) {
                 super.onPostExecute(result)
-                View.inflate(WormList)ImageView(WormList)
+                setRecyclerView(WormList)
             }
         }).execute()
     }
 
-    fun deleteList(worm: WormEntity) {
+    fun deleteList(list: WormEntity) {
         val deleteTask = (object : AsyncTask<Unit, Unit, Unit>() {
             override fun doInBackground(vararg params: Unit?) {
-                db.wormDAO().delete(worm)
+                db.wormDAO().delete(list)
             }
             override fun onPostExecute(result: Unit?) {
                 super.onPostExecute(result)
@@ -96,5 +84,12 @@ class MainActivity : AppCompatActivity() {
         }).execute()
     }
 
+    fun setRecyclerView(wormList : List<WormEntity>) {
+        wlist.adapter = WormAdapter(this, wormList,this)
+    }
 
+
+    override fun onDeleteListener(list: WormEntity) {
+        deleteList(list)
+    }
 }

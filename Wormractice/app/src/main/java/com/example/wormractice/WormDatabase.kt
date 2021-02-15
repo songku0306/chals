@@ -9,6 +9,8 @@ import androidx.room.RoomDatabase
 @Database(entities = arrayOf(WormEntity::class), version = 1)
 abstract class WormDatabase : RoomDatabase() {
 
+    abstract fun wormDAO() : WormDAO
+
     companion object {
         var INSTANCE : WormDatabase? = null
 

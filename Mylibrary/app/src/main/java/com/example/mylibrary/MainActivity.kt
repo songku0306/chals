@@ -1,10 +1,12 @@
 package com.example.mylibrary
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         badd = findViewById(R.id.badd)
         fbphase = findViewById(R.id.fbphase)
@@ -40,6 +43,7 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
             var list = BookEntity(null, fbphase.text.toString())
             fbphase.setText("")
             insertList(list)
+
         }
         imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
 
