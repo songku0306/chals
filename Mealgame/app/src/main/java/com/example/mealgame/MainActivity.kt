@@ -91,55 +91,56 @@ class MainActivity : AppCompatActivity() {
 
         ob_ciz.setImageResource(currentFeed.imageId)
 
-//        //-------------------라운드 시작---------------------------------------------------
-//        rd_start.setOnClickListener {
-//            rd_start.isGone = true
-//
-//            ob_ciz.animate().apply {
-//                duration = 1000
-//                translationY(300f)
-//            }.withEndAction {
-//                ob_ciz.animate().apply {
-//                    duration = 100
-//                    scaleX(1.05f)
-//                }.withEndAction {
-//                    ob_ciz.animate().apply {
-//                        startDelay = 100
-//                        duration = 100
-//                        scaleX(0.95f)
-//                    }.withEndAction {
-//                        ob_ciz.animate().apply {
-//                            duration = 100
-//                            scaleX(1.05f)
-//                            scaleY(1.05f)
-//                        }.withEndAction {
-//                            ob_ciz.animate().apply {
-//                                startDelay = 100
-//                                duration = 100
-//                                scaleX(0.95f)
-//                                scaleY(0.95f)
-//                            }.start()
-//                        }
-//                    }
-//                }
-//            }
-//
-//
-//            gif_worm.isVisible = true
-//            gif_worm.animate().apply {
-//                duration = 2500
-//                translationX(-300f)
-//                start()
-//            }
+        //-------------------라운드 시작---------------------------------------------------
+        rd_start.setOnClickListener {
+            rd_start.isGone = true
+            ob_ciz.isVisible = true
 
-//            gif_worm1.animate().apply {
-//                duration = 2500
-//                translationX(-100f)
-//                translationY(-10f)
-//                start()
-//            }
+            ob_ciz.animate().apply {
+                duration = 1000
+                translationY(300f)
+            }.withEndAction {
+                ob_ciz.animate().apply {
+                    duration = 100
+                    scaleX(1.05f)
+                }.withEndAction {
+                    ob_ciz.animate().apply {
+                        startDelay = 100
+                        duration = 100
+                        scaleX(0.95f)
+                    }.withEndAction {
+                        ob_ciz.animate().apply {
+                            duration = 100
+                            scaleX(1.05f)
+                            scaleY(1.05f)
+                        }.withEndAction {
+                            ob_ciz.animate().apply {
+                                startDelay = 100
+                                duration = 100
+                                scaleX(0.95f)
+                                scaleY(0.95f)
+                            }.start()
+                        }
+                    }
+                }
+            }
 
-//        }
+
+            gif_worm.isVisible = true
+            gif_worm.animate().apply {
+                duration = 2500
+                translationX(-300f)
+                start()
+            }
+
+            gif_worm1.animate().apply {
+                duration = 2500
+                translationX(-100f)
+                translationY(-10f)
+                start()
+            }
+
+        }
 
 //===================버튼클릭================================================
         btn_worm.setOnClickListener {
