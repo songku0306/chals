@@ -82,6 +82,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/gold"
                 android:layout_width="match_parent"
@@ -92,33 +93,51 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <Button
-                    android:id="@+id/gl1"
+                    android:id="@+id/silver_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1괴"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="1은괴"
+                    app:layout_constraintBottom_toTopOf="@+id/brown_1"
+                    app:layout_constraintEnd_toStartOf="@+id/gold_1"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <Button
-                    android:id="@+id/gl10"
+                    android:id="@+id/gold_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10괴"
+                    android:text="1금괴"
+                    app:layout_constraintBottom_toTopOf="@+id/plat_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/silver_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/brown_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1토륨"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/gl1"
+                    app:layout_constraintEnd_toStartOf="@+id/plat_1"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/gl1" />
+                    app:layout_constraintTop_toBottomOf="@+id/silver_1" />
+
                 <Button
-                    android:id="@+id/gl100"
+                    android:id="@+id/plat_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100괴"
+                    android:text="1백금"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/gl1"
-                    app:layout_constraintTop_toBottomOf="@+id/gl1" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/brown_1"
+                    app:layout_constraintTop_toBottomOf="@+id/gold_1" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/seed"
                 android:layout_width="match_parent"
@@ -129,34 +148,53 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <Button
-                    android:id="@+id/sd1000"
+                    android:id="@+id/sd_11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+1000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="1100sd"
+                    app:layout_constraintBottom_toTopOf="@+id/sd_22"
+                    app:layout_constraintEnd_toStartOf="@+id/sd_44"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
-                    android:id="@+id/sd5000"
+                    android:id="@+id/sd_22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+5000"
+                    android:text="2.2억sd"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/sd1000"
+                    app:layout_constraintEnd_toStartOf="@+id/plat_2"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sd1000" />
+                    app:layout_constraintTop_toBottomOf="@+id/sd_11"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <Button
-                    android:id="@+id/sd101"
+                    android:id="@+id/plat_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+1억"
+                    android:text="4.4억sd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/sd1000"
-                    app:layout_constraintTop_toBottomOf="@+id/sd1000" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/sd_22"
+                    app:layout_constraintTop_toBottomOf="@+id/sd_44"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:id="@+id/sd_44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4400sd"
+                    app:layout_constraintBottom_toTopOf="@+id/plat_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/sd_11"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </LinearLayout>

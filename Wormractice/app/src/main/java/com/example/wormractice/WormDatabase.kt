@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = arrayOf(WormEntity::class), version = 1)
+@Database(entities = arrayOf(WormEntity::class), version = 2)
 abstract class WormDatabase : RoomDatabase() {
 
     abstract fun wormDAO() : WormDAO
