@@ -12,12 +12,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var tv_gold : TextView
     lateinit var tv_seed : TextView
 
-    lateinit var gl1 : Button
-    lateinit var gl10 : Button
-    lateinit var gl100 : Button
-    lateinit var sd1000 : Button
-    lateinit var sd5000 : Button
-    lateinit var sd101 : Button
+    lateinit var silver_1 : Button
+    lateinit var gold_1 : Button
+    lateinit var brown_1 : Button
+    lateinit var plat_1 : Button
+    lateinit var sd_11 : Button
+    lateinit var sd_44 : Button
+    lateinit var sd_22 : Button
+    lateinit var sd_444 : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,18 +31,17 @@ class MainActivity : AppCompatActivity() {
         var tv_seed : Int = 0
         var tv_gold : Int = 0
 
-        gl1 = findViewById(R.id.gl1)
-        gl10 = findViewById(R.id.brown_1)
-        gl100 = findViewById(R.id.plat_1)
-        sd1000 = findViewById(R.id.sd1000)
-        sd5000 = findViewById(R.id.sd5000)
-        sd101 = findViewById(R.id.sd101)
+        silver_1 = findViewById(R.id.silver_1)
+        gold_1 = findViewById(R.id.gold_1)
+        brown_1 = findViewById(R.id.brown_1)
+        plat_1 = findViewById(R.id.plat_1)
+        sd_11 = findViewById(R.id.sd_11)
+        sd_44 = findViewById(R.id.sd_44)
+        sd_22 = findViewById(R.id.sd_22)
+        sd_444 = findViewById(R.id.sd_444)
 
 
-        gl1.setOnClickListener {
-            tv_gold = tv_gold.plus(1)
-            tv_seed = tv_seed.plus(4400)
-        }
+
     }
 
 

@@ -160,19 +160,31 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <Button
+                    android:id="@+id/sd_44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4400sd"
+                    app:layout_constraintBottom_toTopOf="@+id/sd_444"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/sd_11"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
                     android:id="@+id/sd_22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2.2억sd"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/plat_2"
+                    app:layout_constraintEnd_toStartOf="@+id/sd_444"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sd_11"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <Button
-                    android:id="@+id/plat_2"
+                    android:id="@+id/sd_444"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.4억sd"
@@ -182,18 +194,6 @@
                     app:layout_constraintStart_toEndOf="@+id/sd_22"
                     app:layout_constraintTop_toBottomOf="@+id/sd_44"
                     app:layout_constraintVertical_bias="1.0" />
-
-                <Button
-                    android:id="@+id/sd_44"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4400sd"
-                    app:layout_constraintBottom_toTopOf="@+id/plat_2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/sd_11"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
