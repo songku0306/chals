@@ -3,6 +3,7 @@ package com.example.goldtestt
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import java.util.*
 
@@ -12,10 +13,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var tv_gold : TextView
     lateinit var tv_seed : TextView
 
-    lateinit var btn_reset : Button
-    lateinit var gold_1 : Button
-    lateinit var brown_1 : Button
-    lateinit var plat_1 : Button
+    lateinit var btn_reset : ImageButton
+    lateinit var gold_1 : ImageButton
+    lateinit var brown_1 : ImageButton
+    lateinit var plat_1 : ImageButton
     lateinit var sd_44 : Button
     lateinit var sd_22 : Button
     lateinit var sd_444 : Button

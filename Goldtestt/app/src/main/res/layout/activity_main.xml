@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -26,9 +27,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/gold_txt"
+                android:id="@+id/gold_case"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="20dp
+"
                 android:layout_weight="1">
 
                 <TextView
@@ -36,16 +39,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="40"
+                    android:textColor="@color/white"
                     android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="개발자에도움을"
+                    app:layout_constraintBottom_toBottomOf="@+id/adView2"
+                    app:layout_constraintStart_toEndOf="@+id/adView2"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/seed_txt"
+                android:id="@+id/seed_case"
+                android:layout_margin="20dp
+"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -55,10 +77,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1000"
+                    android:textColor="@color/white"
                     android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:text="억"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tlem" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
@@ -81,20 +115,22 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/rhl"
+                    android:id="@+id/rhl_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="괴"
+                    android:textColor="@color/white"
                     android:textSize="50sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_reset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/reset"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="리셋"
@@ -110,142 +146,97 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/tlem"
+                    android:id="@+id/tlem_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="시드"
+                    android:textColor="@color/white"
                     android:textSize="50sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/right"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:weightSum="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/gold"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_weight="0.5"
-                app:layout_constraintEnd_toEndOf="parent"
+
+            <ImageButton
+                android:id="@+id/gold_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gold"
+                android:text="1금괴"
+                app:layout_constraintBottom_toTopOf="@+id/brown_1"
+                app:layout_constraintEnd_toStartOf="@+id/sd_44"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/silver_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1은괴"
-                    app:layout_constraintBottom_toTopOf="@+id/brown_1"
-                    app:layout_constraintEnd_toStartOf="@+id/gold_1"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <ImageButton
+                android:id="@+id/brown_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/brown"
+                android:text="1토륨"
+                app:layout_constraintBottom_toTopOf="@+id/plat_1"
+                app:layout_constraintEnd_toStartOf="@+id/sd_22"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gold_1" />
 
-                <Button
-                    android:id="@+id/gold_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1금괴"
-                    app:layout_constraintBottom_toTopOf="@+id/plat_1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/silver_1"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <ImageButton
+                android:id="@+id/plat_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/plati"
+                android:text="1백금"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sd_444"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/brown_1" />
 
-                <Button
-                    android:id="@+id/brown_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1토륨"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/plat_1"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/silver_1" />
+            <Button
+                android:id="@+id/sd_44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4400sd"
+                app:layout_constraintBottom_toTopOf="@+id/sd_22"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gold_1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-                <Button
-                    android:id="@+id/plat_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1백금"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/brown_1"
-                    app:layout_constraintTop_toBottomOf="@+id/gold_1" />
+            <Button
+                android:id="@+id/sd_22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.2억sd"
+                app:layout_constraintBottom_toTopOf="@+id/sd_444"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/brown_1"
+                app:layout_constraintTop_toBottomOf="@+id/sd_44" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/seed"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_weight="0.5"
+            <Button
+                android:id="@+id/sd_444"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.4억sd"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toEndOf="@+id/plat_1"
+                app:layout_constraintTop_toBottomOf="@+id/sd_22" />
 
-                <Button
-                    android:id="@+id/sd_11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1100sd"
-                    app:layout_constraintBottom_toTopOf="@+id/sd_22"
-                    app:layout_constraintEnd_toStartOf="@+id/sd_44"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
 
-                <Button
-                    android:id="@+id/sd_44"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4400sd"
-                    app:layout_constraintBottom_toTopOf="@+id/sd_444"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/sd_11"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <Button
-                    android:id="@+id/sd_22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2.2억sd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/sd_444"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sd_11"
-                    app:layout_constraintVertical_bias="1.0" />
-
-                <Button
-                    android:id="@+id/sd_444"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4.4억sd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/sd_22"
-                    app:layout_constraintTop_toBottomOf="@+id/sd_44"
-                    app:layout_constraintVertical_bias="1.0" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
