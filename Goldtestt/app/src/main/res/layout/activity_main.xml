@@ -38,7 +38,7 @@
                     android:id="@+id/rhl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +78,7 @@
                     android:id="@+id/tlem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4400"
+                    android:text="0"
                     android:textColor="@color/white"
                     android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -133,22 +133,19 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/reset"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
                     android:text="리셋"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/reset_tv" />
 
                 <TextView
                     android:id="@+id/reset_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:text="리셋"
                     android:textColor="#F4EB9F"
                     app:layout_constraintEnd_toEndOf="@+id/btn_reset"
                     app:layout_constraintStart_toStartOf="@+id/btn_reset"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_reset" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -237,33 +234,44 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/plus"
-                app:layout_constraintBottom_toTopOf="@+id/plus3"
+                app:layout_constraintBottom_toBottomOf="@+id/brown_1"
                 app:layout_constraintEnd_toStartOf="@+id/brown_1"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/plus1" />
+                app:layout_constraintTop_toTopOf="@+id/brown_1" />
 
             <ImageButton
                 android:id="@+id/plus1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/plus"
-                app:layout_constraintBottom_toTopOf="@+id/plus2"
+                app:layout_constraintBottom_toBottomOf="@+id/gold_1"
                 app:layout_constraintEnd_toStartOf="@+id/gold_1"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/gold_1" />
+
+            <ImageButton
+                android:id="@+id/plus4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/plus"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <ImageButton
                 android:id="@+id/plus3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/plus"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/plat_1"
                 app:layout_constraintEnd_toStartOf="@+id/plat_1"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/plus2" />
+                app:layout_constraintTop_toTopOf="@+id/plat_1" />
 
             <ImageButton
                 android:id="@+id/minus2"
@@ -281,11 +289,22 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/minus"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/minus4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/plat_1"
                 app:layout_constraintTop_toBottomOf="@+id/minus2" />
+
+            <ImageButton
+                android:id="@+id/minus4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/minus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/minus3" />
 
             <TextView
                 android:id="@+id/textView"
@@ -302,7 +321,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1괴 4400SD"
+                android:text="1괴"
                 android:textColor="#F4EB9F"
                 app:layout_constraintEnd_toEndOf="@+id/gold_1"
                 app:layout_constraintStart_toStartOf="@+id/gold_1"
@@ -312,7 +331,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5괴 22000sd"
+                android:text="5괴"
                 android:textColor="#F4EB9F"
                 app:layout_constraintEnd_toEndOf="@+id/brown_1"
                 app:layout_constraintStart_toStartOf="@+id/brown_1"
@@ -322,11 +341,23 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10괴 44000sd"
+                android:text="10괴"
                 android:textColor="#F4EB9F"
                 app:layout_constraintEnd_toEndOf="@+id/plat_1"
                 app:layout_constraintStart_toStartOf="@+id/plat_1"
                 app:layout_constraintTop_toBottomOf="@+id/plat_1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50괴"
+                android:textColor="#F4EB9F"
+                app:layout_constraintBottom_toBottomOf="@+id/minus4"
+                app:layout_constraintEnd_toStartOf="@+id/minus4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plus4"
+                app:layout_constraintTop_toTopOf="@+id/minus4" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
