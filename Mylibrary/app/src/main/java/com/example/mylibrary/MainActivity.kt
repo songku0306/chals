@@ -1,8 +1,8 @@
 package com.example.mylibrary
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.AsyncTask
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,10 +10,12 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mylibrary.BookDatabase.Companion.getInstance
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 
 
 @SuppressLint("StaticFieldLeak")
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
     lateinit var fbphase : EditText
     lateinit var blist : RecyclerView
 
+
     var imm : InputMethodManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,20 +40,19 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
         fbphase = findViewById(R.id.fbphase)
         blist = findViewById(R.id.recyclerView)
 
+
         db = BookDatabase.getInstance(this)!!
 
         badd.setOnClickListener {
             var list = BookEntity(null, fbphase.text.toString())
             fbphase.setText("")
             insertList(list)
-
         }
+
+
         imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-
         blist.layoutManager = LinearLayoutManager(this)
-
     }
-
 
 
     fun hideKeyboard(v: View) {
@@ -72,6 +74,7 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
         }
         insertTask.execute()
     }
+
 
     fun getAllList() {
         val getTask = (object : AsyncTask<Unit, Unit, Unit>() {

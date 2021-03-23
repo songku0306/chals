@@ -1,11 +1,14 @@
 package com.example.calcuratetest
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     var num = 0
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
 
         btn1.setOnClickListener {
-           num += 4400
-           tv1.text = num.toString()
+           val date = LocalDate.now()
+            tv1.setText("$date")
         }
 
     }
