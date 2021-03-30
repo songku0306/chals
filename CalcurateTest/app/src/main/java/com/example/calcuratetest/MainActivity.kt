@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
 
         btn1.setOnClickListener {
-           val date = LocalDate.now()
-            tv1.setText("$date")
+            num += 1
+            tv1.text = "$num"
         }
 
     }

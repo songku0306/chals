@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
@@ -32,18 +33,13 @@ import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var ViewModel: Gold
 
-//    private lateinit var binding: ActivityMainBinding
-
-    private lateinit var btn_worm: ImageButton
-    private lateinit var btn_menu: ImageButton
+    private lateinit var midlay : ConstraintLayout
     private lateinit var rd_start: Button
+
+
     private lateinit var ob_ciz: ImageView
     private lateinit var gif_worm: GifImageView
-    private lateinit var gif_worm1: GifImageView
-    private lateinit var btn_level: ImageButton
-    private lateinit var egg: ImageView
     private lateinit var lbl_gold: TextView
 
     //        var btn_status: ImageView = findViewById(R.id.statusbtn)
@@ -69,25 +65,16 @@ class MainActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        btn_menu = findViewById(R.id.menubtn)
-        btn_worm = findViewById(R.id.wobtn)
+        midlay = findViewById(R.id.midlay)
         rd_start = findViewById(R.id.rd_start)
         ob_ciz = findViewById(R.id.gif_ciz)
         gif_worm = findViewById(R.id.gif_worm)
-        gif_worm1 = findViewById(R.id.gif_worm)
 
-        btn_level = findViewById(R.id.lvbtn)
-        egg = findViewById(R.id.egg)
         lbl_gold = findViewById(R.id.lbl_gold)
 
-
+        var gold = 0
 // =================메뉴칸======================================================
-        btn_menu.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-        }
+
 
         ob_ciz.setImageResource(currentFeed.imageId)
 
@@ -129,40 +116,16 @@ class MainActivity : AppCompatActivity() {
             gif_worm.isVisible = true
             gif_worm.animate().apply {
                 duration = 2500
-                translationX(-300f)
+                translationX(-200f)
                 start()
             }
-
-            gif_worm1.animate().apply {
-                duration = 2500
-                translationX(-100f)
-                translationY(-10f)
-                start()
-            }
-
         }
 
-//===================버튼클릭================================================
-        btn_worm.setOnClickListener {
+//===================버튼클릭===========================================================================================================
 
-            ViewModel._gold.value = (ViewModel._gold.value)?.minus(10)
-        }
-
-        btn_level.setOnClickListener {
-
-
-            egg.animate().apply {
-                duration = 50
-                scaleX(1.05f)
-                scaleY(1.05f)
-            }.withEndAction {
-                egg.animate().apply {
-                    duration = 50
-                    scaleX(0.95f)
-                    scaleY(0.95f)
-                }.start()
-            }
-
+        midlay.setOnClickListener {
+            gold += 1
+            lbl_gold.text = "$gold"
         }
 
 
