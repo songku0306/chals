@@ -47,11 +47,21 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var AdView: AdView
 
-    data class Feed(val imageId: Int, val stage: Int, val round: Int, val healthPoint: Int)
+    data class Feed(val imageId: Int, val stage: Int, val per: Int, val hp: Int)
 
     val feeds = mutableListOf(
-            Feed(R.drawable.beans, 1, 1, 100),
-            Feed(R.drawable.gif_ciz, 1, 2, 500),
+            Feed(R.drawable.bean1, 1, 1, 5),
+            Feed(R.drawable.bean2, 1, 2, 10),
+            Feed(R.drawable.bean3, 1, 3, 20),
+            Feed(R.drawable.bean4, 1, 4, 30),
+            Feed(R.drawable.bean5, 1, 5, 40),
+            Feed(R.drawable.bean6, 1, 6, 50),
+            Feed(R.drawable.bean7, 1, 7, 60),
+            Feed(R.drawable.bean8, 1, 8, 70),
+            Feed(R.drawable.bean9, 1, 9, 80),
+            Feed(R.drawable.bean10, 1, 10, 90),
+
+            Feed(R.drawable.gif_ciz, 2, 1, 100),
             Feed(R.drawable.tuna, 1, 3, 2500)
     )
 
