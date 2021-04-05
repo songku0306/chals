@@ -1,33 +1,21 @@
 package com.example.mealgame
 
-import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.view.WindowManager
-import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import pl.droidsonroids.gif.GifImageView
-import java.lang.Exception
 import java.util.*
-import kotlin.concurrent.timer
-//import androidx.databinding.DataBindingUtil
 
 
 
@@ -38,12 +26,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rd_start: Button
 
 
-    private lateinit var ob_ciz: ImageView
-    private lateinit var gif_worm: GifImageView
+    private lateinit var feeding: ImageView
+    private lateinit var worm: ImageView
     private lateinit var lbl_gold: TextView
 
-    //        var btn_status: ImageView = findViewById(R.id.statusbtn)
-//        var btn_power: ImageButton = findViewById(R.id.pobtn)
 
     lateinit var AdView: AdView
 
@@ -67,6 +53,19 @@ class MainActivity : AppCompatActivity() {
 
     private var currentFeed = feeds[0]
 
+    data class Worm(val imageId: Int, val rd1: Int, val per: Int, val power: Int)
+
+    val worms = mutableListOf(
+            Worm(R.drawable.worm1, 1, 1, 1),
+            Worm(R.drawable.worm2, 1, 2, 10),
+            Worm(R.drawable.worm1, 1, 3, 20)
+    )
+
+    private var currentWorm = worms[0]
+
+
+    var gold = 0
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,41 +76,42 @@ class MainActivity : AppCompatActivity() {
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         midlay = findViewById(R.id.midlay)
         rd_start = findViewById(R.id.rd_start)
-        ob_ciz = findViewById(R.id.gif_ciz)
-        gif_worm = findViewById(R.id.gif_worm)
+        feeding = findViewById(R.id.feeding)
+        worm = findViewById(R.id.worm)
 
         lbl_gold = findViewById(R.id.lbl_gold)
 
-        var gold = 0
+
 // =================메뉴칸======================================================
 
 
-        ob_ciz.setImageResource(currentFeed.imageId)
+        feeding.setImageResource(currentFeed.imageId)
+
 
         //-------------------라운드 시작---------------------------------------------------
         rd_start.setOnClickListener {
             rd_start.isGone = true
-            ob_ciz.isVisible = true
+            feeding.isVisible = true
 
-            ob_ciz.animate().apply {
+            feeding.animate().apply {
                 duration = 1000
-                translationY(300f)
+                translationY(400f)
             }.withEndAction {
-                ob_ciz.animate().apply {
+                feeding.animate().apply {
                     duration = 100
                     scaleX(1.05f)
                 }.withEndAction {
-                    ob_ciz.animate().apply {
+                    feeding.animate().apply {
                         startDelay = 100
                         duration = 100
                         scaleX(0.95f)
                     }.withEndAction {
-                        ob_ciz.animate().apply {
+                        feeding.animate().apply {
                             duration = 100
                             scaleX(1.05f)
                             scaleY(1.05f)
                         }.withEndAction {
-                            ob_ciz.animate().apply {
+                            feeding.animate().apply {
                                 startDelay = 100
                                 duration = 100
                                 scaleX(0.95f)
@@ -123,21 +123,23 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-            gif_worm.isVisible = true
-            gif_worm.animate().apply {
+            worm.isVisible = true
+            worm.animate().apply {
                 duration = 2500
-                translationX(-200f)
+                translationX(-230f)
                 start()
             }
         }
 
 //===================버튼클릭===========================================================================================================
+        showCurrentFeed()
 
         midlay.setOnClickListener {
-            gold += 1
-            lbl_gold.text = "$gold"
-        }
 
+            gold += currentWorm.power
+            lbl_gold.text = "$gold"
+
+        }
 
 
 
@@ -153,9 +155,32 @@ class MainActivity : AppCompatActivity() {
         AdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         AdView.loadAd(adRequest)
+
     }
+
+    private fun showCurrentFeed() {
+        var newFeed = feeds[0]
+        for (feed in feeds) {
+            if (gold >= feed.hp) {
+                newFeed = feed
+            }
+            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
+            // you'll start producing more expensive desserts as determined by startProductionAmount
+            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
+            // than the amount sold.
+            else break
+        }
+
+        // If the new dessert is actually different than the current dessert, update the image
+        if (newFeed != currentFeed) {
+            currentFeed = newFeed
+            feeding.setImageResource(newFeed.imageId)
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
     }
+
 }

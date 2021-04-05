@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        gif_worm = findViewById(R.id.gif_worm)
+        gif_worm = findViewById(R.id.worm)
 
 
         gif_worm.animate().apply {

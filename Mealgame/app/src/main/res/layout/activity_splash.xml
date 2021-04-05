@@ -9,7 +9,7 @@
 
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gif_worm"
+        android:id="@+id/worm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gif_worm"

@@ -9,7 +9,7 @@
         motion:duration="1000">
        <KeyFrameSet>
            <KeyAttribute
-               motion:motionTarget="@+id/gif_ciz"
+               motion:motionTarget="@+id/feeding"
                motion:framePosition="53"
                android:translationY="30dp" />
        </KeyFrameSet>
@@ -24,7 +24,7 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/gif_ciz"
+            android:id="@+id/feeding"
             android:layout_marginBottom="300dp" />
     </ConstraintSet>
 
