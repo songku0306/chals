@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     data class Worm(val imageId: Int, val rd1: Int, val per: Int, val power: Int)
 
     val worms = mutableListOf(
-            Worm(R.drawable.worm1, 1, 1, 1),
+            Worm(R.drawable.womo, 1, 1, 1),
             Worm(R.drawable.worm2, 1, 2, 10),
             Worm(R.drawable.worm1, 1, 3, 20)
     )
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
 
         feeding.setImageResource(currentFeed.imageId)
-
+        worm.setImageResource(currentWorm.imageId)
 
         //-------------------라운드 시작---------------------------------------------------
         rd_start.setOnClickListener {
@@ -127,60 +127,64 @@ class MainActivity : AppCompatActivity() {
             worm.animate().apply {
                 duration = 2500
                 translationX(-230f)
-                start()
+            }.withEndAction {
+                worm.animate().apply {
+                    startDelay = 100
+                    duration = 100
+                    scaleX(0.95f)
+                    scaleY(0.95f)
+                }.start()
             }
         }
-
 //===================버튼클릭===========================================================================================================
-        showCurrentFeed()
 
-        midlay.setOnClickListener {
+            midlay.setOnClickListener {
 
-            gold += currentWorm.power
-            lbl_gold.text = "$gold"
+                gold += currentWorm.power
+                lbl_gold.text = "$gold"
+                showCurrentFeed()
 
-        }
-
+            }
 
 
 //===================광 고 ================================================
-        val adView = AdView(this)
+            val adView = AdView(this)
 
-        adView.adSize = AdSize.BANNER
+            adView.adSize = AdSize.BANNER
 
-        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+            adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
 // TODO: Add adView to your view hierarchy.
 
-        MobileAds.initialize(this) {}
-        AdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        AdView.loadAd(adRequest)
+            MobileAds.initialize(this) {}
+            AdView = findViewById(R.id.adView)
+            val adRequest = AdRequest.Builder().build()
+            AdView.loadAd(adRequest)
 
-    }
+        }
 
-    private fun showCurrentFeed() {
-        var newFeed = feeds[0]
-        for (feed in feeds) {
-            if (gold >= feed.hp) {
-                newFeed = feed
+        private fun showCurrentFeed() {
+            var newFeed = feeds[0]
+            for (feed in feeds) {
+                if (gold >= feed.hp) {
+                    newFeed = feed
+                }
+                // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
+                // you'll start producing more expensive desserts as determined by startProductionAmount
+                // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
+                // than the amount sold.
+                else break
             }
-            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
-            // you'll start producing more expensive desserts as determined by startProductionAmount
-            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
-            // than the amount sold.
-            else break
-        }
 
-        // If the new dessert is actually different than the current dessert, update the image
-        if (newFeed != currentFeed) {
-            currentFeed = newFeed
-            feeding.setImageResource(newFeed.imageId)
+            // If the new dessert is actually different than the current dessert, update the image
+            if (newFeed != currentFeed) {
+                currentFeed = newFeed
+                feeding.setImageResource(newFeed.imageId)
+            }
         }
-    }
 
 
     override fun onDestroy() {
         super.onDestroy()
     }
-
 }
+
