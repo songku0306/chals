@@ -19,27 +19,15 @@ class MainActivity : AppCompatActivity() {
             Feed(R.drawable.bean1, 1, 1, 1),
             Feed(R.drawable.bean2, 1, 2, 2),
             Feed(R.drawable.bean3, 1, 3, 3),
-            Feed(R.drawable.bean4, 1, 4, 4),
-            Feed(R.drawable.bean5, 1, 5, 5),
-            Feed(R.drawable.bean6, 1, 6, 6),
-            Feed(R.drawable.bean7, 1, 7, 7),
-            Feed(R.drawable.bean8, 1, 8, 8),
-            Feed(R.drawable.bean9, 1, 9, 9),
-            Feed(R.drawable.bean10, 1, 10, 10),
 
-            Feed(R.drawable.bean1, 2, 1, 11),
-            Feed(R.drawable.bean2, 2, 2, 12),
-            Feed(R.drawable.bean3, 2, 3, 13),
-            Feed(R.drawable.bean4, 2, 4, 14),
-            Feed(R.drawable.bean5, 2, 5, 15),
-            Feed(R.drawable.bean6, 2, 6, 16),
-            Feed(R.drawable.bean7, 2, 7, 17),
-            Feed(R.drawable.bean8, 2, 8, 18),
-            Feed(R.drawable.bean9, 2, 9, 19),
-            Feed(R.drawable.bean10, 2, 10, 20)
+            Feed(R.drawable.ciz1, 2, 1, 4),
+            Feed(R.drawable.ciz2, 2, 2, 5),
+            Feed(R.drawable.ciz3, 2, 3, 6)
+
     )
     private var currentFeed = feeds[0]
     private var currentStage = feeds[1]
+
 
     data class Worm(val imageId: Int, val power: Int)
     val worms = mutableListOf(
@@ -52,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var touch : ConstraintLayout
     lateinit var feed : ImageView
     lateinit var worm : ImageView
+    lateinit var rd_start : Button
 
     var num = 0
     var pow = currentWorm.power
@@ -65,38 +54,42 @@ class MainActivity : AppCompatActivity() {
         tv1 = findViewById(R.id.tv1)
         touch = findViewById(R.id.touch)
         worm = findViewById(R.id.worm)
+        rd_start = findViewById(R.id.rd_start)
 
         feed.setImageResource(currentFeed.imageId)
         worm.setImageResource(currentWorm.imageId)
 
-        mfun()
+        rd_start.isVisible = true
+        feed.isVisible = false
+        worm.isVisible = false
+
+        gameStart()
 
     }
 
-    private fun mfun() {
-        touch.setOnClickListener {
+    private fun gameStart() {
+        rd_start.setOnClickListener { mfun() }
+        roundEnd()
+    }
+    private fun roundEnd() {
+        val newStage = feeds[1]
+        if (newStage != currentStage) {
+            rd_start.isVisible = true
+        }
+    }
 
+
+    private fun mfun() {
+        rd_start.isVisible = false
+        feed.isVisible = true
+        worm.isVisible = true
+
+        touch.setOnClickListener {
             num += pow
             tv1.text = "$num"
             showCurrentFeed()
-            roundEnd()
         }
     }
-
-    private fun roundEnd() {
-        var newStage =feeds[1]
-        for (stage in feeds) {
-            if (num >= stage.hp) {
-                newStage = stage
-            } else break
-        }
-        if (newStage != currentStage) {
-            currentStage = newStage
-            feed.setImageResource(newStage.imageId)
-        }
-
-    }
-
     private fun showCurrentFeed() {
             var newFeed = feeds[0]
             for (feed in feeds) {

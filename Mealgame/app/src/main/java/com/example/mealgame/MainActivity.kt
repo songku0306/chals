@@ -47,8 +47,18 @@ class MainActivity : AppCompatActivity() {
             Feed(R.drawable.bean9, 1, 9, 80),
             Feed(R.drawable.bean10, 1, 10, 90),
 
-            Feed(R.drawable.gif_ciz, 2, 1, 100),
-            Feed(R.drawable.tuna, 1, 3, 2500)
+            Feed(R.drawable.ciz1, 2, 1, 100),
+            Feed(R.drawable.ciz2, 2, 2, 110),
+            Feed(R.drawable.ciz3, 2, 3, 120),
+            Feed(R.drawable.ciz4, 2, 4, 130),
+            Feed(R.drawable.ciz5, 2, 5, 140),
+            Feed(R.drawable.ciz6, 2, 6, 150),
+            Feed(R.drawable.ciz7, 2, 7, 160),
+            Feed(R.drawable.ciz8, 2, 8, 170),
+            Feed(R.drawable.ciz9, 2, 9, 180),
+            Feed(R.drawable.ciz10, 2, 10, 190),
+
+            Feed(R.drawable.tuna, 1, 3, 200)
     )
 
     private var currentFeed = feeds[0]
@@ -88,9 +98,39 @@ class MainActivity : AppCompatActivity() {
         feeding.setImageResource(currentFeed.imageId)
         worm.setImageResource(currentWorm.imageId)
 
-        //-------------------라운드 시작---------------------------------------------------
+        rd_start.isVisible = true
+
+        roundStart()
+
+        touchStart()
+
+//===================광 고 ================================================
+            val adView = AdView(this)
+
+            adView.adSize = AdSize.BANNER
+
+            adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+// TODO: Add adView to your view hierarchy.
+
+            MobileAds.initialize(this) {}
+            AdView = findViewById(R.id.adView)
+            val adRequest = AdRequest.Builder().build()
+            AdView.loadAd(adRequest)
+
+        }
+
+    private fun touchStart() {
+        midlay.setOnClickListener {
+
+            gold += currentWorm.power
+            lbl_gold.text = "$gold"
+            showCurrentFeed()
+        }
+    }
+
+    private fun roundStart() {
         rd_start.setOnClickListener {
-            rd_start.isGone = true
+            rd_start.isVisible = false
             feeding.isVisible = true
 
             feeding.animate().apply {
@@ -136,33 +176,10 @@ class MainActivity : AppCompatActivity() {
                 }.start()
             }
         }
-//===================버튼클릭===========================================================================================================
 
-            midlay.setOnClickListener {
+    }
 
-                gold += currentWorm.power
-                lbl_gold.text = "$gold"
-                showCurrentFeed()
-
-            }
-
-
-//===================광 고 ================================================
-            val adView = AdView(this)
-
-            adView.adSize = AdSize.BANNER
-
-            adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
-// TODO: Add adView to your view hierarchy.
-
-            MobileAds.initialize(this) {}
-            AdView = findViewById(R.id.adView)
-            val adRequest = AdRequest.Builder().build()
-            AdView.loadAd(adRequest)
-
-        }
-
-        private fun showCurrentFeed() {
+    private fun showCurrentFeed() {
             var newFeed = feeds[0]
             for (feed in feeds) {
                 if (gold >= feed.hp) {
@@ -180,6 +197,7 @@ class MainActivity : AppCompatActivity() {
                 currentFeed = newFeed
                 feeding.setImageResource(newFeed.imageId)
             }
+        rd_start.isVisible = true
         }
 
 
