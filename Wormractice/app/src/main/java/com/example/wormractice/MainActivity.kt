@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity(), OnDeleteListener {
     lateinit var feed : ImageView
     lateinit var btn_power : ImageButton
     lateinit var wlist : RecyclerView
+
+
+
     lateinit var asdf : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {

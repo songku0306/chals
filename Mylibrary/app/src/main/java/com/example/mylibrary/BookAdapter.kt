@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.TypeConverter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BookAdapter(
         val context : Context,
@@ -18,11 +21,14 @@ class BookAdapter(
     inner class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val blist : TextView
         val root : ConstraintLayout
+        var book_date : TextView
 
         init {
             // Define click listener for the ViewHolder's View.
             blist = itemView.findViewById(R.id.book_summary)
             root = itemView.findViewById(R.id.root)
+            book_date = itemView.findViewById(R.id.book_date)
+
         }
 
     }
@@ -38,18 +44,20 @@ class BookAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val dates = cwno()
         val list = list[position]
 
+        holder.book_date.text = "$dates"
         holder.blist.text = list.list
         holder.root.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(v: View?): Boolean {
                 onDeleteListener.onDeleteListener(list)
                 return true
             }
+
         })
     }
 
 
-
-
+    
 }

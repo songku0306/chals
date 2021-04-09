@@ -2,7 +2,6 @@ package com.example.mylibrary
 
 import android.annotation.SuppressLint
 import android.os.AsyncTask
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,11 +10,11 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.annotation.RequiresApi
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 
 @SuppressLint("StaticFieldLeak")
@@ -53,7 +52,6 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
         imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         blist.layoutManager = LinearLayoutManager(this)
     }
-
 
     fun hideKeyboard(v: View) {
         if(v != null) {

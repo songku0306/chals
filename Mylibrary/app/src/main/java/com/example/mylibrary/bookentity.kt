@@ -13,5 +13,5 @@ import java.util.*
 data class BookEntity(
     @PrimaryKey(autoGenerate = true)
     var id : Long?,
-    var list : String = ""
+    var list : String = "",
     )

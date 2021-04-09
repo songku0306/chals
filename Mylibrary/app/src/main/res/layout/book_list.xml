@@ -30,7 +30,7 @@
         android:id="@+id/book_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="date-day"
+        android:format24Hour="MMM,yyyy\n\thh:mm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
