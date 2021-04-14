@@ -1,5 +1,6 @@
 package com.example.mealgame
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
@@ -16,25 +18,21 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import java.util.*
+import com.example.mealgame.MenuActivity as MenuActivity1
 
 
+lateinit var midlay : ConstraintLayout
+
+lateinit var feeding: ImageView
+lateinit var worm: ImageView
+lateinit var lbl_gold: TextView
+lateinit var menubtn : ImageButton
+
+lateinit var AdView: AdView
 
 class MainActivity : AppCompatActivity() {
 
-
-    private lateinit var midlay : ConstraintLayout
-    private lateinit var rd_start: Button
-
-
-    private lateinit var feeding: ImageView
-    private lateinit var worm: ImageView
-    private lateinit var lbl_gold: TextView
-
-
-    lateinit var AdView: AdView
-
     data class Feed(val imageId: Int, val stage: Int, val per: Int, val hp: Int)
-
     val feeds = mutableListOf(
             Feed(R.drawable.bean1, 1, 1, 5),
             Feed(R.drawable.bean2, 1, 2, 10),
@@ -60,22 +58,19 @@ class MainActivity : AppCompatActivity() {
 
             Feed(R.drawable.tuna, 1, 3, 200)
     )
-
     private var currentFeed = feeds[0]
 
     data class Worm(val imageId: Int, val rd1: Int, val per: Int, val power: Int)
-
     val worms = mutableListOf(
-            Worm(R.drawable.womo, 1, 1, 1),
-            Worm(R.drawable.worm2, 1, 2, 10),
-            Worm(R.drawable.worm1, 1, 3, 20)
+            Worm(R.drawable.womo, 1, 10, 1),
+            Worm(R.drawable.womo, 1, 20, 2),
+            Worm(R.drawable.womo, 1, 30, 3)
     )
-
     private var currentWorm = worms[0]
 
 
     var gold = 0
-
+    var num = 0
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,126 +78,112 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+
         midlay = findViewById(R.id.midlay)
-        rd_start = findViewById(R.id.rd_start)
         feeding = findViewById(R.id.feeding)
         worm = findViewById(R.id.worm)
-
         lbl_gold = findViewById(R.id.lbl_gold)
-
-
-// =================메뉴칸======================================================
-
-
         feeding.setImageResource(currentFeed.imageId)
         worm.setImageResource(currentWorm.imageId)
+        menubtn = findViewById(R.id.menubtn)
 
-        rd_start.isVisible = true
-
+        menubtn.setOnClickListener() {
+            val menuIntent = Intent(this, MenuActivity1::class.java)
+            menuIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(menuIntent)
+        }
         roundStart()
-
         touchStart()
 
 //===================광 고 ================================================
-            val adView = AdView(this)
+        val adView = AdView(this)
+        adView.adSize = AdSize.BANNER
+        adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        MobileAds.initialize(this) {}
+        AdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        AdView.loadAd(adRequest)
 
-            adView.adSize = AdSize.BANNER
 
-            adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
-// TODO: Add adView to your view hierarchy.
+    }
 
-            MobileAds.initialize(this) {}
-            AdView = findViewById(R.id.adView)
-            val adRequest = AdRequest.Builder().build()
-            AdView.loadAd(adRequest)
+    private fun roundStart() {
 
+        feeding.animate().apply {
+            duration = 1000
+            translationY(400f)
+        }.withEndAction {
+            feeding.animate().apply {
+                duration = 100
+                scaleX(1.05f)
+            }.withEndAction {
+                feeding.animate().apply {
+                    startDelay = 100
+                    duration = 100
+                    scaleX(0.95f)
+                }.withEndAction {
+                    feeding.animate().apply {
+                        duration = 100
+                        scaleX(1.05f)
+                        scaleY(1.05f)
+                    }.withEndAction {
+                        feeding.animate().apply {
+                            startDelay = 100
+                            duration = 100
+                            scaleX(0.95f)
+                            scaleY(0.95f)
+                        }.start()
+                    }
+                }
+            }
         }
+
+
+        worm.animate().apply {
+            duration = 2500
+            translationX(-230f)
+        }.withEndAction {
+            worm.animate().apply {
+                startDelay = 100
+                duration = 100
+                scaleX(0.95f)
+                scaleY(0.95f)
+            }.start()
+        }
+    }
 
     private fun touchStart() {
         midlay.setOnClickListener {
 
             gold += currentWorm.power
+            num += currentWorm.power
             lbl_gold.text = "$gold"
             showCurrentFeed()
         }
     }
 
-    private fun roundStart() {
-        rd_start.setOnClickListener {
-            rd_start.isVisible = false
-            feeding.isVisible = true
-
-            feeding.animate().apply {
-                duration = 1000
-                translationY(400f)
-            }.withEndAction {
-                feeding.animate().apply {
-                    duration = 100
-                    scaleX(1.05f)
-                }.withEndAction {
-                    feeding.animate().apply {
-                        startDelay = 100
-                        duration = 100
-                        scaleX(0.95f)
-                    }.withEndAction {
-                        feeding.animate().apply {
-                            duration = 100
-                            scaleX(1.05f)
-                            scaleY(1.05f)
-                        }.withEndAction {
-                            feeding.animate().apply {
-                                startDelay = 100
-                                duration = 100
-                                scaleX(0.95f)
-                                scaleY(0.95f)
-                            }.start()
-                        }
-                    }
-                }
-            }
-
-
-            worm.isVisible = true
-            worm.animate().apply {
-                duration = 2500
-                translationX(-230f)
-            }.withEndAction {
-                worm.animate().apply {
-                    startDelay = 100
-                    duration = 100
-                    scaleX(0.95f)
-                    scaleY(0.95f)
-                }.start()
-            }
-        }
-
-    }
-
     private fun showCurrentFeed() {
-            var newFeed = feeds[0]
-            for (feed in feeds) {
-                if (gold >= feed.hp) {
-                    newFeed = feed
-                }
-                // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
-                // you'll start producing more expensive desserts as determined by startProductionAmount
-                // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
-                // than the amount sold.
-                else break
+        var newFeed = feeds[0]
+        for (feed in feeds) {
+            if (gold >= feed.hp) {
+                newFeed = feed
             }
-
-            // If the new dessert is actually different than the current dessert, update the image
-            if (newFeed != currentFeed) {
-                currentFeed = newFeed
-                feeding.setImageResource(newFeed.imageId)
-            }
-        rd_start.isVisible = true
+            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
+            // you'll start producing more expensive desserts as determined by startProductionAmount
+            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
+            // than the amount sold.
+            else break
         }
 
+        // If the new dessert is actually different than the current dessert, update the image
+        if (newFeed != currentFeed) {
+            currentFeed = newFeed
+            feeding.setImageResource(newFeed.imageId)
+        }
 
-    override fun onDestroy() {
-        super.onDestroy()
     }
+
 }
+
 

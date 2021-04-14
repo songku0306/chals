@@ -7,22 +7,23 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
 
     data class Feed(val imageId: Int, val stage: Int, val perF: Int, val hp: Int)
 
     val feeds = mutableListOf(
-            Feed(R.drawable.bean1, 1, 1, 5),
-            Feed(R.drawable.bean2, 1, 2, 10),
-            Feed(R.drawable.bean3, 1, 3, 20),
-            Feed(R.drawable.bean4, 1, 4, 30),
-            Feed(R.drawable.bean5, 1, 5, 40),
-            Feed(R.drawable.bean6, 1, 6, 50),
-            Feed(R.drawable.bean7, 1, 7, 60),
-            Feed(R.drawable.bean8, 1, 8, 70),
-            Feed(R.drawable.bean9, 1, 9, 80),
-            Feed(R.drawable.bean10, 1, 10, 90)
+            Feed(R.drawable.bean1, 1, 1, 10),
+            Feed(R.drawable.bean2, 1, 2, 20),
+            Feed(R.drawable.bean3, 1, 3, 30),
+            Feed(R.drawable.bean4, 1, 4, 40),
+            Feed(R.drawable.bean5, 1, 5, 50),
+            Feed(R.drawable.bean6, 1, 6, 60),
+            Feed(R.drawable.bean7, 1, 7, 70),
+            Feed(R.drawable.bean8, 1, 8, 80),
+            Feed(R.drawable.bean9, 1, 9, 90),
+            Feed(R.drawable.bean10, 1, 10, 100)
     )
 
     private var currentFeed = feeds[0]
@@ -36,13 +37,13 @@ class MainActivity : AppCompatActivity() {
 
     private var currentWorm = worms[0]
 
-    lateinit var iv_feed : ImageView
-    lateinit var iv_worm : ImageView
-    lateinit var tv_gold : TextView
-    lateinit var tc_gold : ConstraintLayout
-
+    lateinit var iv_feed: ImageView
+    lateinit var iv_worm: ImageView
+    lateinit var tv_gold: TextView
+    lateinit var tc_gold: ConstraintLayout
 
     var gold = 0
+    var num = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,19 +59,77 @@ class MainActivity : AppCompatActivity() {
         tv_gold = findViewById(R.id.tv_gold)
         tc_gold = findViewById(R.id.tc_gold)
 
-        touchTap()
+        roundSet()
     }
 
-    private fun touchTap() {
+    fun roundSet() {
+
+            iv_feed.animate().apply {
+                duration = 1000
+                translationY(400f)
+            }.withEndAction {
+                iv_feed.animate().apply {
+                    duration = 100
+                    scaleX(1.05f)
+                }.withEndAction {
+                    iv_feed.animate().apply {
+                        startDelay = 100
+                        duration = 100
+                        scaleX(0.95f)
+                    }.withEndAction {
+                        iv_feed.animate().apply {
+                            duration = 100
+                            scaleX(1.05f)
+                            scaleY(1.05f)
+                        }.withEndAction {
+                            iv_feed.animate().apply {
+                                startDelay = 100
+                                duration = 100
+                                scaleX(0.95f)
+                                scaleY(0.95f)
+                            }.start()
+                        }
+                    }
+                }
+            }
+
+//
+//            iv_worm.animate().apply {
+//                duration = 2500
+//                translationX(-230f)
+//            }.withEndAction {
+//                iv_worm.animate().apply {
+//                    duration = 50
+//                    scaleXBy(0.5f)
+//                }.withEndAction {
+//                iv_worm.animate().apply {
+//                    duration = 50
+//                    scaleXBy(1.5f)
+//                }.start()
+//            }
+//        }
+
+
+            touchTap()
+            powerUp()
+    }
+
+    private fun powerUp() {
+
+    }
+
+    fun touchTap() {
         tc_gold.setOnClickListener {
             gold += currentWorm.power
-            tv_gold.text = "$gold"
+            num += currentWorm.power
+            tv_gold.text = gold.toString()
 
             showCurrentFeed()
         }
     }
 
-    private fun showCurrentFeed() {
+
+    fun showCurrentFeed() {
         var newFeed = feeds[0]
         for (feed in feeds) {
             if (gold >= feed.hp) {
@@ -89,6 +148,5 @@ class MainActivity : AppCompatActivity() {
             iv_feed.setImageResource(newFeed.imageId)
         }
     }
-
 
 }
