@@ -71,7 +71,7 @@
 
         <ImageButton
             android:id="@+id/menubtn"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="left"
             android:background="@drawable/menu"
@@ -86,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="@+id/menubtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menubtn"
-            app:srcCompat="@drawable/status" />
+            app:srcCompat="@drawable/shop" />
 
         <LinearLayout
             android:id="@+id/topcen"
