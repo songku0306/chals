@@ -5,20 +5,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.HandlerCompat.postDelayed
+import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
     lateinit var touch:ConstraintLayout
     lateinit var worm: ImageView
     lateinit var feed:ImageView
+    lateinit var pow: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         feed = findViewById(R.id.feed)
         worm = findViewById(R.id.worm)
         touch = findViewById(R.id.touch)
+        pow = findViewById(R.id.pow)
 
+        var currentPower = 1
+        var poow = currentPower
+        pow.text = "-" + poow.toString()
+        pow.isVisible = false
         outWorm()
         outFeed()
         Handler().postDelayed( {
@@ -31,8 +39,64 @@ class MainActivity : AppCompatActivity() {
 
     private fun touchUp() {
         touch.setOnClickListener {
-
+        effect()
         }
+    }
+    private fun effect() {
+        upFeed()
+        downFeed()
+        showDam()
+        downDam()
+    }
+
+    private fun showDam() {
+        pow.isVisible = true
+        val animator = ValueAnimator.ofFloat(1f,0f)
+        animator.duration = 400
+        animator.start()
+        animator.addUpdateListener(object: ValueAnimator.AnimatorUpdateListener{
+            override fun onAnimationUpdate(animation: ValueAnimator?) {
+                val animationValue = animation?.animatedValue as Float
+                pow.alpha = animationValue
+            }
+        })
+    }
+    private fun downDam() {
+        pow.isVisible = true
+        val animator = ValueAnimator.ofFloat(0f,100f)
+        animator.duration = 400
+        animator.start()
+        animator.addUpdateListener(object: ValueAnimator.AnimatorUpdateListener{
+            override fun onAnimationUpdate(animation: ValueAnimator?) {
+                val animationValue = animation?.animatedValue as Float
+                pow.translationY = animationValue
+            }
+        })
+    }
+
+    private fun upFeed() {
+        val animator = ValueAnimator.ofFloat(1f,1.1f)
+        animator.duration = 500
+        animator.start()
+        animator.addUpdateListener(object: ValueAnimator.AnimatorUpdateListener{
+            override fun onAnimationUpdate(animation: ValueAnimator?) {
+                val animationValue = animation?.animatedValue as Float
+                feed.scaleX = animationValue
+                feed.scaleY = animationValue
+            }
+        })
+    }
+    private fun downFeed() {
+        val animator = ValueAnimator.ofFloat(1.1f,1f)
+        animator.duration = 500
+        animator.start()
+        animator.addUpdateListener(object: ValueAnimator.AnimatorUpdateListener{
+            override fun onAnimationUpdate(animation: ValueAnimator?) {
+                val animationValue = animation?.animatedValue as Float
+                feed.scaleX = animationValue
+                feed.scaleY = animationValue
+            }
+        })
     }
 
     private fun outWorm() {

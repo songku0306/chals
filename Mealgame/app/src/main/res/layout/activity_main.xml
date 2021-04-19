@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -10,42 +10,41 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/midlay"
+        android:id="@+id/touch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/botlay"
-        android:layout_below="@+id/toplay"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
             android:id="@+id/worm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:background="@drawable/womo"
             android:src="@drawable/worm1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/feed"
+            app:layout_constraintStart_toEndOf="@+id/feed"
+            app:layout_constraintTop_toTopOf="@+id/feed" />
 
-        <ImageView
-            android:id="@+id/feeding"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/feed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="300dp"
             android:background="?android:selectableItemBackground"
-            android:src="@drawable/gif_ciz"
+            android:src="@drawable/bean1"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499"
             app:srcCompat="@drawable/bean1" />
 
         <com.google.android.gms.ads.AdView
@@ -57,6 +56,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+
+        <TextView
+            android:id="@+id/dam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="dam"
+            app:layout_constraintBottom_toTopOf="@+id/feed"
+            app:layout_constraintEnd_toStartOf="@+id/worm"
+            app:layout_constraintStart_toStartOf="@+id/feed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -128,7 +137,7 @@
 
 
             <TextView
-                android:id="@+id/lbl_gold"
+                android:id="@+id/tv_gold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -136,14 +145,14 @@
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toTopOf="@+id/lbl_dia"
+                app:layout_constraintBottom_toTopOf="@+id/tv_dia"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/img_gold"
+                app:layout_constraintStart_toEndOf="@+id/ig_gold"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/lbl_dia"
+                android:id="@+id/tv_dia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -153,32 +162,32 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/img_dia"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_gold" />
+                app:layout_constraintStart_toEndOf="@+id/ig_dia"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gold" />
 
             <ImageView
-                android:id="@+id/img_gold"
+                android:id="@+id/ig_gold"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/img_dia"
-                app:layout_constraintEnd_toStartOf="@+id/lbl_gold"
+                app:layout_constraintBottom_toTopOf="@+id/ig_dia"
+                app:layout_constraintEnd_toStartOf="@+id/tv_gold"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/gold" />
 
             <ImageView
-                android:id="@+id/img_dia"
+                android:id="@+id/ig_dia"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/lbl_dia"
+                app:layout_constraintEnd_toStartOf="@+id/tv_dia"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_gold"
+                app:layout_constraintTop_toBottomOf="@+id/ig_gold"
                 app:srcCompat="@drawable/crystal" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

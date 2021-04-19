@@ -1,8 +1,11 @@
 
 package com.example.wormtycoon
 
+import android.animation.ValueAnimator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     val feeds = mutableListOf(
             Feed(R.drawable.bean1, 1, 1, 10),
+            Feed(R.drawable.ciz_init, 1, 1, 15),
             Feed(R.drawable.bean2, 1, 2, 20),
             Feed(R.drawable.bean3, 1, 3, 30),
             Feed(R.drawable.bean4, 1, 4, 40),
@@ -41,9 +45,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var iv_worm: ImageView
     lateinit var tv_gold: TextView
     lateinit var tc_gold: ConstraintLayout
+    lateinit var tv_dam : TextView
 
     var gold = 0
     var num = 0
+    var pow = currentWorm.power
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,95 +64,130 @@ class MainActivity : AppCompatActivity() {
 
         tv_gold = findViewById(R.id.tv_gold)
         tc_gold = findViewById(R.id.tc_gold)
+        tv_dam = findViewById(R.id.tv_dam)
 
-        roundSet()
+        tv_dam.isVisible = false
+        tv_dam.text = "-" + pow.toString()
+
+        outWorm()
+        outFeed()
+        Handler().postDelayed({
+            inWorm()
+            inFeed()
+            touchUp()
+        }, 1000)
     }
 
-    fun roundSet() {
-
-            iv_feed.animate().apply {
-                duration = 1000
-                translationY(400f)
-            }.withEndAction {
-                iv_feed.animate().apply {
-                    duration = 100
-                    scaleX(1.05f)
-                }.withEndAction {
-                    iv_feed.animate().apply {
-                        startDelay = 100
-                        duration = 100
-                        scaleX(0.95f)
-                    }.withEndAction {
-                        iv_feed.animate().apply {
-                            duration = 100
-                            scaleX(1.05f)
-                            scaleY(1.05f)
-                        }.withEndAction {
-                            iv_feed.animate().apply {
-                                startDelay = 100
-                                duration = 100
-                                scaleX(0.95f)
-                                scaleY(0.95f)
-                            }.start()
-                        }
-                    }
-                }
-            }
-
-//
-//            iv_worm.animate().apply {
-//                duration = 2500
-//                translationX(-230f)
-//            }.withEndAction {
-//                iv_worm.animate().apply {
-//                    duration = 50
-//                    scaleXBy(0.5f)
-//                }.withEndAction {
-//                iv_worm.animate().apply {
-//                    duration = 50
-//                    scaleXBy(1.5f)
-//                }.start()
-//            }
-//        }
-
-
-            touchTap()
-            powerUp()
-    }
-
-    private fun powerUp() {
-
-    }
-
-    fun touchTap() {
+    fun touchUp() {
         tc_gold.setOnClickListener {
-            gold += currentWorm.power
-            num += currentWorm.power
+            gold += pow
+            num += pow
             tv_gold.text = gold.toString()
-
+            effect()
             showCurrentFeed()
         }
     }
 
 
-    fun showCurrentFeed() {
+
+    private fun showCurrentFeed() {
         var newFeed = feeds[0]
         for (feed in feeds) {
-            if (gold >= feed.hp) {
+            if (num >= feed.hp) {
                 newFeed = feed
-            }
-            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
-            // you'll start producing more expensive desserts as determined by startProductionAmount
-            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
-            // than the amount sold.
-            else break
+            } else break
         }
-
-        // If the new dessert is actually different than the current dessert, update the image
         if (newFeed != currentFeed) {
             currentFeed = newFeed
             iv_feed.setImageResource(newFeed.imageId)
         }
+
     }
 
+    private fun effect() {
+        upFeed()
+        downFeed()
+        showDam()
+        downDam()
+    }
+
+    private fun showDam() {
+        tv_dam.isVisible = true
+        val animator = ValueAnimator.ofFloat(1f,0f)
+        animator.duration = 500
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            tv_dam.alpha = animationValue
+        }
+    }
+    private fun downDam() {
+        tv_dam.isVisible = true
+        val animator = ValueAnimator.ofFloat(0f,-100f)
+        animator.duration = 600
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            tv_dam.translationY = animationValue
+        }
+    }
+
+    private fun upFeed() {
+        val animator = ValueAnimator.ofFloat(1f,1.1f)
+        animator.duration = 500
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            iv_feed.scaleX = animationValue
+            iv_feed.scaleY = animationValue
+        }
+    }
+    private fun downFeed() {
+        val animator = ValueAnimator.ofFloat(1.1f,1f)
+        animator.duration = 500
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            iv_feed.scaleX = animationValue
+            iv_feed.scaleY = animationValue
+        }
+    }
+
+    private fun outWorm() {
+        val animator = ValueAnimator.ofFloat(0f,200f)
+        animator.duration = 100
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            iv_worm.translationX = animationValue
+        }
+    }
+    private fun inWorm() {
+        val animator = ValueAnimator.ofFloat(200f,0f)
+        animator.duration = 900
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            iv_worm.translationX = animationValue
+        }
+    }
+
+    private fun outFeed() {
+        val animator = ValueAnimator.ofFloat(0f,-200f)
+        animator.duration = 100
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            iv_feed.translationY = animationValue
+        }
+    }
+    private fun inFeed() {
+        val animator = ValueAnimator.ofFloat(-200f,0f)
+        animator.duration = 900
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            iv_feed.translationY = animationValue
+        }
+    }
 }

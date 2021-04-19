@@ -25,4 +25,15 @@
         app:layout_constraintStart_toEndOf="@+id/feed"
         app:layout_constraintTop_toTopOf="@+id/feed"
         app:srcCompat="@drawable/womo" />
+
+    <TextView
+        android:id="@+id/pow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="pow"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/feed"
+        app:layout_constraintEnd_toEndOf="@+id/feed"
+        app:layout_constraintStart_toStartOf="@+id/feed" />
 </androidx.constraintlayout.widget.ConstraintLayout>

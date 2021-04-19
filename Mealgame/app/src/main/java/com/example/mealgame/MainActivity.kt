@@ -1,18 +1,20 @@
 package com.example.mealgame
 
+import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.ImageView
 import android.widget.TextView
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import com.example.mealgame.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -21,19 +23,19 @@ import java.util.*
 import com.example.mealgame.MenuActivity as MenuActivity1
 
 
-lateinit var midlay : ConstraintLayout
-
-lateinit var feeding: ImageView
+lateinit var touch : ConstraintLayout
+lateinit var feed: ImageView
 lateinit var worm: ImageView
-lateinit var lbl_gold: TextView
+lateinit var tv_gold: TextView
 lateinit var menubtn : ImageButton
-
+lateinit var dam : TextView
 lateinit var AdView: AdView
+
 
 class MainActivity : AppCompatActivity() {
 
     data class Feed(val imageId: Int, val stage: Int, val per: Int, val hp: Int)
-    val feeds = mutableListOf(
+    private val feeds = mutableListOf(
             Feed(R.drawable.bean1, 1, 1, 5),
             Feed(R.drawable.bean2, 1, 2, 10),
             Feed(R.drawable.bean3, 1, 3, 20),
@@ -61,40 +63,56 @@ class MainActivity : AppCompatActivity() {
     private var currentFeed = feeds[0]
 
     data class Worm(val imageId: Int, val rd1: Int, val per: Int, val power: Int)
-    val worms = mutableListOf(
+    private val worms = mutableListOf(
             Worm(R.drawable.womo, 1, 10, 1),
             Worm(R.drawable.womo, 1, 20, 2),
             Worm(R.drawable.womo, 1, 30, 3)
     )
     private var currentWorm = worms[0]
 
+private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     var gold = 0
     var num = 0
+    var pow = currentWorm.power
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
 
 
-        midlay = findViewById(R.id.midlay)
-        feeding = findViewById(R.id.feeding)
+        touch = findViewById(R.id.touch)
+        feed = findViewById(R.id.feed)
         worm = findViewById(R.id.worm)
-        lbl_gold = findViewById(R.id.lbl_gold)
-        feeding.setImageResource(currentFeed.imageId)
+        tv_gold = findViewById(R.id.tv_gold)
+        feed.setImageResource(currentFeed.imageId)
         worm.setImageResource(currentWorm.imageId)
         menubtn = findViewById(R.id.menubtn)
+        dam = findViewById(R.id.dam)
 
-        menubtn.setOnClickListener() {
-            val menuIntent = Intent(this, MenuActivity1::class.java)
-            menuIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(menuIntent)
-        }
-        roundStart()
-        touchStart()
+
+        dam.isVisible = false
+        dam.text = "-" + pow.toString()
+
+
+        outWorm()
+        outFeed()
+        Handler().postDelayed( {
+            inWorm()
+            inFeed()
+            touchUp()
+            binding.menubtn.setOnClickListener {
+                val intent = Intent(this, MenuActivity1::class.java)
+                intent.putExtra("gold", tv_gold.text.toString())
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(intent)
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout)
+
+            }
+        }, 1000)
 
 //===================광 고 ================================================
         val adView = AdView(this)
@@ -105,60 +123,15 @@ class MainActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         AdView.loadAd(adRequest)
 
-
     }
 
-    private fun roundStart() {
 
-        feeding.animate().apply {
-            duration = 1000
-            translationY(400f)
-        }.withEndAction {
-            feeding.animate().apply {
-                duration = 100
-                scaleX(1.05f)
-            }.withEndAction {
-                feeding.animate().apply {
-                    startDelay = 100
-                    duration = 100
-                    scaleX(0.95f)
-                }.withEndAction {
-                    feeding.animate().apply {
-                        duration = 100
-                        scaleX(1.05f)
-                        scaleY(1.05f)
-                    }.withEndAction {
-                        feeding.animate().apply {
-                            startDelay = 100
-                            duration = 100
-                            scaleX(0.95f)
-                            scaleY(0.95f)
-                        }.start()
-                    }
-                }
-            }
-        }
-
-
-        worm.animate().apply {
-            duration = 2500
-            translationX(-230f)
-        }.withEndAction {
-            worm.animate().apply {
-                startDelay = 100
-                duration = 100
-                scaleX(0.95f)
-                scaleY(0.95f)
-            }.start()
-        }
-    }
-
-    private fun touchStart() {
-        midlay.setOnClickListener {
-
-            gold += currentWorm.power
-            num += currentWorm.power
-            lbl_gold.text = "$gold"
+    private fun touchUp() {
+        touch.setOnClickListener {
+            gold += pow
+            num += pow
+            tv_gold.text = gold.toString()
+            effect()
             showCurrentFeed()
         }
     }
@@ -166,24 +139,102 @@ class MainActivity : AppCompatActivity() {
     private fun showCurrentFeed() {
         var newFeed = feeds[0]
         for (feed in feeds) {
-            if (gold >= feed.hp) {
+            if (num >= feed.hp) {
                 newFeed = feed
+            } else break
+        }
+            if (newFeed != currentFeed) {
+                currentFeed = newFeed
+                feed.setImageResource(newFeed.imageId)
             }
-            // The list of desserts is sorted by startProductionAmount. As you sell more desserts,
-            // you'll start producing more expensive desserts as determined by startProductionAmount
-            // We know to break as soon as we see a dessert who's "startProductionAmount" is greater
-            // than the amount sold.
-            else break
-        }
-
-        // If the new dessert is actually different than the current dessert, update the image
-        if (newFeed != currentFeed) {
-            currentFeed = newFeed
-            feeding.setImageResource(newFeed.imageId)
-        }
 
     }
 
+    private fun effect() {
+        upFeed()
+        downFeed()
+        showDam()
+        downDam()
+    }
+
+    private fun showDam() {
+        dam.isVisible = true
+        val animator = ValueAnimator.ofFloat(1f,0f)
+        animator.duration = 400
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            dam.alpha = animationValue
+        }
+    }
+    private fun downDam() {
+        dam.isVisible = true
+        val animator = ValueAnimator.ofFloat(0f,-50f)
+        animator.duration = 400
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            dam.translationY = animationValue
+        }
+    }
+
+    private fun upFeed() {
+        val animator = ValueAnimator.ofFloat(1f,1.1f)
+        animator.duration = 500
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            feed.scaleX = animationValue
+            feed.scaleY = animationValue
+        }
+    }
+    private fun downFeed() {
+        val animator = ValueAnimator.ofFloat(1.1f,1f)
+        animator.duration = 500
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            feed.scaleX = animationValue
+            feed.scaleY = animationValue
+        }
+    }
+
+    private fun outWorm() {
+        val animator = ValueAnimator.ofFloat(0f,200f)
+        animator.duration = 100
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            worm.translationX = animationValue
+        }
+    }
+    private fun inWorm() {
+        val animator = ValueAnimator.ofFloat(200f,0f)
+        animator.duration = 900
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            worm.translationX = animationValue
+        }
+    }
+
+    private fun outFeed() {
+        val animator = ValueAnimator.ofFloat(0f,-200f)
+        animator.duration = 100
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            feed.translationY = animationValue
+        }
+    }
+    private fun inFeed() {
+        val animator = ValueAnimator.ofFloat(-200f,0f)
+        animator.duration = 900
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            feed.translationY = animationValue
+        }
+    }
+
 }
-
-
