@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
     val feeds = mutableListOf(
             Feed(R.drawable.bean1, 1, 1, 10),
-            Feed(R.drawable.ciz_init, 1, 1, 15),
             Feed(R.drawable.bean2, 1, 2, 20),
             Feed(R.drawable.bean3, 1, 3, 30),
             Feed(R.drawable.bean4, 1, 4, 40),
@@ -27,7 +26,19 @@ class MainActivity : AppCompatActivity() {
             Feed(R.drawable.bean7, 1, 7, 70),
             Feed(R.drawable.bean8, 1, 8, 80),
             Feed(R.drawable.bean9, 1, 9, 90),
-            Feed(R.drawable.bean10, 1, 10, 100)
+            Feed(R.drawable.bean10, 1, 10, 100),
+
+            Feed(R.drawable.ciz_init, 2, 1, 105),
+            Feed(R.drawable.ciz2, 2, 2, 110),
+            Feed(R.drawable.ciz3, 2, 3, 120),
+            Feed(R.drawable.ciz4, 2, 4, 130),
+            Feed(R.drawable.ciz5, 2, 5, 140),
+            Feed(R.drawable.ciz6, 2, 6, 150),
+            Feed(R.drawable.ciz7, 2, 7, 160),
+            Feed(R.drawable.ciz8, 2, 8, 170),
+            Feed(R.drawable.ciz9, 2, 9, 180),
+            Feed(R.drawable.ciz10, 2, 10, 190)
+
     )
 
     private var currentFeed = feeds[0]
