@@ -118,41 +118,21 @@
             android:id="@+id/tc_back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#b3000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/iv_feed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/menu_detail"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/bean1"
-                />
-
-            <ImageView
-                android:id="@+id/iv_worm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_feed"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/womo" />
-
-            <TextView
-                android:id="@+id/tv_dam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
-                android:text="-1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/iv_feed"
-                app:layout_constraintStart_toStartOf="@+id/iv_feed"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:srcCompat="@drawable/menu_detail" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

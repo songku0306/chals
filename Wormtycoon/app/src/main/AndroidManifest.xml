@@ -9,6 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wormtycoon">
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".StoreActivity" />
+        <activity android:name=".WormbookActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
