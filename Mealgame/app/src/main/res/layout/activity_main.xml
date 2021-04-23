@@ -47,6 +47,16 @@
             app:layout_constraintVertical_bias="0.499"
             app:srcCompat="@drawable/bean1" />
 
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gfworm"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/gif_worm"
+            app:layout_constraintBottom_toBottomOf="@+id/feed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/feed" />
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="wrap_content"
