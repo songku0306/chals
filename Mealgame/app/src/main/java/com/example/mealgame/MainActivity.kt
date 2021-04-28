@@ -10,6 +10,7 @@ import android.os.Looper
 import android.widget.ImageView
 import android.widget.TextView
 import android.view.WindowManager
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +32,7 @@ lateinit var tv_gold: TextView
 lateinit var menubtn : ImageButton
 lateinit var dam : TextView
 lateinit var AdView: AdView
-
+lateinit var fewFrag: FrameLayout
 
 class MainActivity : AppCompatActivity() {
 
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
+        fewFrag = findViewById(R.id.fewFrag)
         touch = findViewById(R.id.touch)
         feed = findViewById(R.id.feed)
         worm = findViewById(R.id.worm)
@@ -106,8 +108,9 @@ class MainActivity : AppCompatActivity() {
             touchUp()
             gfworm.isVisible = false
             menubtn.setOnClickListener {
+                menuOn()
             }
-        }, 2000)
+        }, 1000)
 
 //===================광 고 ================================================
         val adView = AdView(this)
@@ -117,6 +120,26 @@ class MainActivity : AppCompatActivity() {
         AdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         AdView.loadAd(adRequest)
+
+    }
+
+    private fun menuOn() {
+        setfrag(1)
+        menuOff()
+    }
+
+    private fun menuOff() {
+        fewFrag.setOnClickListener {
+
+        }
+    }
+
+    fun setfrag(fragnum : Int) {
+        val ft = supportFragmentManager.beginTransaction()
+
+        when(fragnum) {
+            1 -> ft.replace(R.id.fewFrag,MenuFrag()).commit()
+        }
 
     }
 
@@ -130,7 +153,6 @@ class MainActivity : AppCompatActivity() {
             showCurrentFeed()
         }
     }
-
     private fun showCurrentFeed() {
         var newFeed = feeds[0]
         for (feed in feeds) {
@@ -144,13 +166,13 @@ class MainActivity : AppCompatActivity() {
             }
 
     }
-
     private fun effect() {
         upFeed()
         downFeed()
         showDam()
         downDam()
     }
+
 
     private fun showDam() {
         dam.isVisible = true

@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import com.google.android.gms.ads.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -72,14 +70,12 @@ class MainActivity : AppCompatActivity() {
             seed += 4400
             tv_seed.text = seed.toString()
         }
-
         plus2.setOnClickListener {
             gold += 5
             tv_gold.text = gold.toString()
             seed += 22000
             tv_seed.text = seed.toString()
         }
-
         plus3.setOnClickListener {
             gold += 10
             tv_gold.text = gold.toString()
@@ -99,14 +95,12 @@ class MainActivity : AppCompatActivity() {
             seed += 4400
             tv_seed.text = seed.toString()
         }
-
         brown_1.setOnClickListener {
             gold += 5
             tv_gold.text = gold.toString()
             seed += 22000
             tv_seed.text = seed.toString()
         }
-
         plat_1.setOnClickListener {
             gold += 10
             tv_gold.text = gold.toString()
@@ -120,14 +114,12 @@ class MainActivity : AppCompatActivity() {
             seed -= 4400
             tv_seed.text = seed.toString()
         }
-
         minus2.setOnClickListener {
             gold -= 5
             tv_gold.text = gold.toString()
             seed -= 22000
             tv_seed.text = seed.toString()
         }
-
         minus3.setOnClickListener {
             gold -= 10
             tv_gold.text = gold.toString()
@@ -143,7 +135,7 @@ class MainActivity : AppCompatActivity() {
 
 
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/8691691433"
+        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544~3347511713"
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         adbtn = findViewById(R.id.adbtn)

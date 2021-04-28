@@ -44,10 +44,7 @@ class BookAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val dates = cwno()
         val list = list[position]
-
-        holder.book_date.text = "$dates"
         holder.blist.text = list.list
         holder.root.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(v: View?): Boolean {

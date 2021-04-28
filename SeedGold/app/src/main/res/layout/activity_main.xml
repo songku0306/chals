@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/contain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3">
+
+
+        <LinearLayout
+            android:id="@+id/center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/gold_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/rhl_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="150dp"
+                    android:text="괴"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/rhl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/rhl_"
+                    app:layout_constraintEnd_toStartOf="@+id/rhl_"
+                    app:layout_constraintTop_toTopOf="@+id/rhl_" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/seed_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tlem_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="110dp"
+                    android:text="시드"
+                    android:textColor="@color/white"
+                    android:textSize="50sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tlem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="30dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tlem_"
+                    app:layout_constraintEnd_toStartOf="@+id/tlem_"
+                    app:layout_constraintTop_toTopOf="@+id/tlem_" />
+
+                <TextView
+                    android:id="@+id/range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="120dp"
+                    android:text="억"
+                    android:textColor="#A6A6A6"
+                    app:layout_constraintBottom_toTopOf="@+id/tlem"
+                    app:layout_constraintEnd_toStartOf="@+id/tlem_" />
+
+                <ImageButton
+                    android:id="@+id/btn_reset"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/reset"
+                    android:text="리셋"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/reset_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="리셋"
+                    android:textColor="#F4EB9F"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_reset"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_reset"
+                    app:layout_constraintStart_toStartOf="@+id/btn_reset" />
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    app:adSize="BANNER"
+                    app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageButton
+                android:id="@+id/brown_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/brown"
+                android:text="1토륨"
+                app:layout_constraintBottom_toBottomOf="@+id/minus2"
+                app:layout_constraintEnd_toStartOf="@+id/minus2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plus2"
+                app:layout_constraintTop_toTopOf="@+id/minus2" />
+
+            <ImageButton
+                android:id="@+id/plat_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/plati"
+                android:text="1백금"
+                app:layout_constraintBottom_toBottomOf="@+id/minus3"
+                app:layout_constraintEnd_toStartOf="@+id/minus3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plus3"
+                app:layout_constraintTop_toTopOf="@+id/minus3" />
+
+            <ImageButton
+                android:id="@+id/minus1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/minus"
+                app:layout_constraintBottom_toTopOf="@+id/minus2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/gold_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/gold_1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gold"
+                android:text="1금괴"
+                app:layout_constraintBottom_toBottomOf="@+id/minus1"
+                app:layout_constraintEnd_toStartOf="@+id/minus1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plus1"
+                app:layout_constraintTop_toTopOf="@+id/minus1" />
+
+            <ImageButton
+                android:id="@+id/plus2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/plus"
+                app:layout_constraintBottom_toBottomOf="@+id/brown_1"
+                app:layout_constraintEnd_toStartOf="@+id/brown_1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/brown_1" />
+
+            <ImageButton
+                android:id="@+id/plus1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/plus"
+                app:layout_constraintBottom_toBottomOf="@+id/gold_1"
+                app:layout_constraintEnd_toStartOf="@+id/gold_1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/gold_1" />
+
+            <ImageButton
+                android:id="@+id/plus4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/plus"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+            <ImageButton
+                android:id="@+id/plus3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/plus"
+                app:layout_constraintBottom_toBottomOf="@+id/plat_1"
+                app:layout_constraintEnd_toStartOf="@+id/plat_1"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/plat_1" />
+
+            <ImageButton
+                android:id="@+id/minus2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/minus"
+                app:layout_constraintBottom_toTopOf="@+id/minus3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/brown_1"
+                app:layout_constraintTop_toBottomOf="@+id/minus1" />
+
+            <ImageButton
+                android:id="@+id/minus3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/minus"
+                app:layout_constraintBottom_toTopOf="@+id/minus4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plat_1"
+                app:layout_constraintTop_toBottomOf="@+id/minus2" />
+
+            <ImageButton
+                android:id="@+id/minus4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/minus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/minus3" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아래 금괴 클릭!"
+                android:textColor="#F4EB9F"
+                app:layout_constraintBottom_toTopOf="@+id/gold_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1괴"
+                android:textColor="#F4EB9F"
+                app:layout_constraintEnd_toEndOf="@+id/gold_1"
+                app:layout_constraintStart_toStartOf="@+id/gold_1"
+                app:layout_constraintTop_toBottomOf="@+id/gold_1" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5괴"
+                android:textColor="#F4EB9F"
+                app:layout_constraintEnd_toEndOf="@+id/brown_1"
+                app:layout_constraintStart_toStartOf="@+id/brown_1"
+                app:layout_constraintTop_toBottomOf="@+id/brown_1" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10괴"
+                android:textColor="#F4EB9F"
+                app:layout_constraintEnd_toEndOf="@+id/plat_1"
+                app:layout_constraintStart_toStartOf="@+id/plat_1"
+                app:layout_constraintTop_toBottomOf="@+id/plat_1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50괴"
+                android:textColor="#F4EB9F"
+                app:layout_constraintBottom_toBottomOf="@+id/minus4"
+                app:layout_constraintEnd_toStartOf="@+id/minus4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plus4"
+                app:layout_constraintTop_toTopOf="@+id/minus4" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
