@@ -119,6 +119,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ShopActivity::class.java)
             startActivity(intent)
             Log.d("button", "shopbtn clicked")
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
 
@@ -126,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
             Log.d("button", "menubtn clicked")
-
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
 //===================광 고 ================================================
@@ -134,7 +135,7 @@ class MainActivity : AppCompatActivity() {
         adView.adSize = AdSize.BANNER
         adView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
         MobileAds.initialize(this) {}
-        AdView = findViewById(R.id.adView)
+        AdView = findViewById(R.id.adView_main)
         val adRequest = AdRequest.Builder().build()
         AdView.loadAd(adRequest)
 

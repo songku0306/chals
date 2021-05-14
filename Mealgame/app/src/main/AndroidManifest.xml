@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_mwicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mealgame">
-        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ShopActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

@@ -79,7 +79,7 @@
             app:layout_constraintTop_toTopOf="@+id/feed" />
 
         <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
+            android:id="@+id/adView_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:adSize="BANNER"
