@@ -9,17 +9,18 @@
         android:roundIcon="@mipmap/ic_mwicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mealgame">
+        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".MenuActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />

@@ -7,21 +7,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.view.WindowManager
-import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
-import com.example.mealgame.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import pl.droidsonroids.gif.GifImageView
-import java.util.*
 
 
 lateinit var touch : ConstraintLayout
@@ -32,7 +30,10 @@ lateinit var tv_gold: TextView
 lateinit var menubtn : ImageButton
 lateinit var dam : TextView
 lateinit var AdView: AdView
-lateinit var fewFrag: FrameLayout
+lateinit var efec : GifImageView
+lateinit var efec1 : GifImageView
+lateinit var shopbtn : ImageButton
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -83,7 +84,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        fewFrag = findViewById(R.id.fewFrag)
         touch = findViewById(R.id.touch)
         feed = findViewById(R.id.feed)
         worm = findViewById(R.id.worm)
@@ -93,13 +93,19 @@ class MainActivity : AppCompatActivity() {
         worm.setImageResource(currentWorm.imageId)
         menubtn = findViewById(R.id.menubtn)
         dam = findViewById(R.id.dam)
+        efec = findViewById(R.id.efec)
+        efec1 = findViewById(R.id.efec1)
+        shopbtn = findViewById(R.id.shopbtn)
 
         worm.isVisible = false
         dam.isVisible = false
+        efec.isVisible = false
+        efec1.isVisible = false
         dam.text = "-" + pow.toString()
 
         inWorm()
         outFeed()
+
         Handler(Looper.getMainLooper()).postDelayed( {
             upFeed()
             downFeed()
@@ -107,10 +113,21 @@ class MainActivity : AppCompatActivity() {
             inFeed()
             touchUp()
             gfworm.isVisible = false
-            menubtn.setOnClickListener {
-                menuOn()
-            }
         }, 1000)
+
+        shopbtn.setOnClickListener {
+            val intent = Intent(this, ShopActivity::class.java)
+            startActivity(intent)
+            Log.d("button", "shopbtn clicked")
+        }
+
+
+        menubtn.setOnClickListener {
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            Log.d("button", "menubtn clicked")
+
+        }
 
 //===================광 고 ================================================
         val adView = AdView(this)
@@ -123,25 +140,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun menuOn() {
-        setfrag(1)
-        menuOff()
-    }
-
-    private fun menuOff() {
-        fewFrag.setOnClickListener {
-
-        }
-    }
-
-    fun setfrag(fragnum : Int) {
-        val ft = supportFragmentManager.beginTransaction()
-
-        when(fragnum) {
-            1 -> ft.replace(R.id.fewFrag,MenuFrag()).commit()
-        }
-
-    }
 
 
     private fun touchUp() {
@@ -169,11 +167,33 @@ class MainActivity : AppCompatActivity() {
     private fun effect() {
         upFeed()
         downFeed()
+        showEfec()
+        showEfec1()
         showDam()
         downDam()
     }
 
 
+    private fun showEfec() {
+        efec.isVisible = true
+        val animator = ValueAnimator.ofFloat(1f,0f)
+        animator.duration = 400
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            efec.alpha = animationValue
+        }
+    }
+    private fun showEfec1() {
+        efec1.isVisible = true
+        val animator = ValueAnimator.ofFloat(1f,0f)
+        animator.duration = 400
+        animator.start()
+        animator.addUpdateListener { animation ->
+            val animationValue = animation?.animatedValue as Float
+            efec1.alpha = animationValue
+        }
+    }
     private fun showDam() {
         dam.isVisible = true
         val animator = ValueAnimator.ofFloat(1f,0f)
@@ -194,6 +214,7 @@ class MainActivity : AppCompatActivity() {
             dam.translationY = animationValue
         }
     }
+
 
     private fun upFeed() {
         val animator = ValueAnimator.ofFloat(1f,1.1f)

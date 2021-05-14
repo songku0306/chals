@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="horizontal"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,6 +54,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/feed" />
 
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/efec"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/effect"
+            app:layout_constraintBottom_toBottomOf="@+id/feed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/feed" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/efec1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/effect1"
+            app:layout_constraintBottom_toBottomOf="@+id/feed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/feed" />
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="wrap_content"
@@ -95,15 +118,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/shopbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="@+id/menubtn"
+            android:background="@drawable/shop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menubtn"
-            app:srcCompat="@drawable/shop" />
+            app:layout_constraintTop_toBottomOf="@+id/menubtn" />
 
         <LinearLayout
             android:id="@+id/topcen"
@@ -201,17 +224,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
-        android:id="@+id/fewFrag"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

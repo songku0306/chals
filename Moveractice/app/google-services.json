@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "62431821812",
+    "project_id": "moveractice",
+    "storage_bucket": "moveractice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62431821812:android:98a609032f92e1fe6983a1",
+        "android_client_info": {
+          "package_name": "com.example.moveractice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62431821812-gvfic5d32idg2e6lduu2kjtcn0puvbqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9ogToeJYqD3gdKyEnhazpyXMTtbEFARI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62431821812-gvfic5d32idg2e6lduu2kjtcn0puvbqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
