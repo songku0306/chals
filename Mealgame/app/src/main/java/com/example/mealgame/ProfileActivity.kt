@@ -1,8 +1,10 @@
 package com.example.mealgame
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Button
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -10,6 +12,7 @@ import com.google.android.gms.ads.MobileAds
 
 class ProfileActivity : AppCompatActivity() {
     lateinit var adView_profile : AdView
+    lateinit var btn_back_tomenu : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +21,13 @@ class ProfileActivity : AppCompatActivity() {
 
 
         adView_profile = findViewById(R.id.adView_profile)
+        btn_back_tomenu = findViewById(R.id.btn_back_tomenu)
 
+        btn_back_tomenu.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
 
         val adView = com.google.android.gms.ads.AdView(this)
         adView.adSize = AdSize.BANNER

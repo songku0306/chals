@@ -8,8 +8,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import com.google.android.gms.ads.*
 
-
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var tv_gold: TextView

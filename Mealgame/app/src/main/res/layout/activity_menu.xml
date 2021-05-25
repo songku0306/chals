@@ -78,7 +78,7 @@
 
 
             <TextView
-                android:id="@+id/tv_gold"
+                android:id="@+id/tv_gold_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -86,14 +86,14 @@
                 android:text="0"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_dia"
+                app:layout_constraintBottom_toTopOf="@+id/tv_dia_menu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ig_gold"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_dia"
+                android:id="@+id/tv_dia_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -104,7 +104,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ig_dia"
-                app:layout_constraintTop_toBottomOf="@+id/tv_gold" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_gold_menu" />
 
             <ImageView
                 android:id="@+id/ig_gold"
@@ -113,7 +113,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/ig_dia"
-                app:layout_constraintEnd_toStartOf="@+id/tv_gold"
+                app:layout_constraintEnd_toStartOf="@+id/tv_gold_menu"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -125,7 +125,7 @@
                 android:layout_height="20dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_dia"
+                app:layout_constraintEnd_toStartOf="@+id/tv_dia_menu"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ig_gold"
@@ -162,10 +162,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
-            android:text="Button"
+            android:text="profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/menudetail_menu"
             app:layout_constraintTop_toTopOf="@+id/menudetail_menu" />
+
+        <Button
+            android:id="@+id/btn_backhome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menudetail_menu" />
+
+        <Button
+            android:id="@+id/btn_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="120dp"
+            android:text="shop"
+            app:layout_constraintBottom_toBottomOf="@+id/menudetail_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

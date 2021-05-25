@@ -33,6 +33,7 @@ lateinit var AdView: AdView
 lateinit var efec : GifImageView
 lateinit var efec1 : GifImageView
 lateinit var shopbtn : ImageButton
+lateinit var tv_dia : TextView
 
 
 class MainActivity : AppCompatActivity() {
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         feed = findViewById(R.id.feed)
         worm = findViewById(R.id.worm)
         gfworm = findViewById(R.id.gfworm)
-        tv_gold = findViewById(R.id.tv_gold)
+        tv_gold = findViewById(R.id.tv_gold_menu)
         feed.setImageResource(currentFeed.imageId)
         worm.setImageResource(currentWorm.imageId)
         menubtn = findViewById(R.id.menubtn)
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         efec = findViewById(R.id.efec)
         efec1 = findViewById(R.id.efec1)
         shopbtn = findViewById(R.id.shopbtn)
+        tv_dia = findViewById(R.id.tv_dia_menu)
 
         worm.isVisible = false
         dam.isVisible = false
@@ -115,21 +117,34 @@ class MainActivity : AppCompatActivity() {
             gfworm.isVisible = false
         }, 1000)
 
-        shopbtn.setOnClickListener {
-            val intent = Intent(this, ShopActivity::class.java)
-            startActivity(intent)
-            Log.d("button", "shopbtn clicked")
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        if (intent.hasExtra("gold") && intent.hasExtra("ruby"))
+        {
+            val gold = intent.getStringExtra("gold")
+            val ruby = intent.getStringExtra("ruby")
+
+            tv_gold.text = gold.toString()
+            tv_dia.text = ruby.toString()
         }
 
-
         menubtn.setOnClickListener {
+            val gold = tv_gold.toString()
+            val ruby = tv_dia.toString()
             val intent = Intent(this, MenuActivity::class.java)
+            intent.putExtra("gold", gold)
+            intent.putExtra("ruby", ruby)
             startActivity(intent)
             Log.d("button", "menubtn clicked")
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
-
+        shopbtn.setOnClickListener {
+            val gold = tv_gold.toString()
+            val ruby = tv_dia.toString()
+            val intent = Intent(this, ShopActivity::class.java)
+            intent.putExtra("gold", gold)
+            intent.putExtra("ruby", ruby)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
 //===================광 고 ================================================
         val adView = AdView(this)
         adView.adSize = AdSize.BANNER
@@ -138,11 +153,7 @@ class MainActivity : AppCompatActivity() {
         AdView = findViewById(R.id.adView_main)
         val adRequest = AdRequest.Builder().build()
         AdView.loadAd(adRequest)
-
     }
-
-
-
     private fun touchUp() {
         touch.setOnClickListener {
             gold += pow
@@ -163,7 +174,6 @@ class MainActivity : AppCompatActivity() {
                 currentFeed = newFeed
                 feed.setImageResource(newFeed.imageId)
             }
-
     }
     private fun effect() {
         upFeed()
@@ -173,8 +183,6 @@ class MainActivity : AppCompatActivity() {
         showDam()
         downDam()
     }
-
-
     private fun showEfec() {
         efec.isVisible = true
         val animator = ValueAnimator.ofFloat(1f,0f)
@@ -215,8 +223,6 @@ class MainActivity : AppCompatActivity() {
             dam.translationY = animationValue
         }
     }
-
-
     private fun upFeed() {
         val animator = ValueAnimator.ofFloat(1f,1.1f)
         animator.duration = 500
@@ -237,7 +243,6 @@ class MainActivity : AppCompatActivity() {
             feed.scaleY = animationValue
         }
     }
-
     private fun inWorm() {
         val animator = ValueAnimator.ofFloat(0f,-200f)
         animator.duration = 2200
@@ -247,7 +252,6 @@ class MainActivity : AppCompatActivity() {
             gfworm.translationX = animationValue
         }
     }
-
     private fun outFeed() {
         val animator = ValueAnimator.ofFloat(0f,-200f)
         animator.duration = 100
@@ -266,5 +270,4 @@ class MainActivity : AppCompatActivity() {
             feed.translationY = animationValue
         }
     }
-
 }
