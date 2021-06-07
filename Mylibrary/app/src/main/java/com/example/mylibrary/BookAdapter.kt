@@ -46,6 +46,9 @@ class BookAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val list = list[position]
         holder.blist.text = list.list
+//        var sdf = SimpleDateFormat("yy/MM/dd hh:mm:ss")
+//        holder.book_date.text = "${sdf.format(list.timestamp)}"
+
         holder.root.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(v: View?): Boolean {
                 onDeleteListener.onDeleteListener(list)

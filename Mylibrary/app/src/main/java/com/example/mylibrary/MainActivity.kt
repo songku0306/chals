@@ -4,17 +4,14 @@ import android.annotation.SuppressLint
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 
 @SuppressLint("StaticFieldLeak")
@@ -43,9 +40,11 @@ class MainActivity : AppCompatActivity() , OnDeleteListener {
         db = BookDatabase.getInstance(this)!!
 
         badd.setOnClickListener {
+//            var currentTime = System.currentTimeMillis()
             var list = BookEntity(null, fbphase.text.toString())
             fbphase.setText("")
             insertList(list)
+            Log.d("time", "time on")
         }
 
 

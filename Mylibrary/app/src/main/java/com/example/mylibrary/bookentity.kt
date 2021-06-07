@@ -14,4 +14,5 @@ data class BookEntity(
     @PrimaryKey(autoGenerate = true)
     var id : Long?,
     var list : String = "",
+//    var timestamp : Long
     )

@@ -12,6 +12,5 @@ import java.util.*
 @Entity(tableName = "time")
 data class Frozen(
         @PrimaryKey(autoGenerate = true)
-        var id : Long?,
-        var time : String = "",
-)
+        var pictureFood : Int, var time : String)
+
