@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clickFood() {
-        TODO("Not yet implemented")
+        var item = arrayList.hashCode()
+        item.hashCode()
     }
 
 
